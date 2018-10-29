@@ -1,18 +1,22 @@
 <template>
   <div class="styleGuide">
     <ul>
-      <li v-for="component in componentList">{{component.package.biotope.componentName}}</li>
+      <li v-for="jsonch in myjson">
+        <a :href="jsonch.biotope.url">{{ jsonch.biotope.componentName }}</a>
+      </li> 
     </ul>
   </div>
 </template>
 
 <script>
+import json from '../../componentList.json'
 export default {
   name: 'styleGuide',
   data () {
     return {
-      componentList: JSON.parse(this.$parent.$options.propsData.componentList)[0]
-     };
+      myjson: json,
+      componentList: JSON.stringify(this.$parent.$options.propsData.componentList)[0]
+    }
   }
 }
 </script>
