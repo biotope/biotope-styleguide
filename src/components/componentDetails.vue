@@ -8,13 +8,11 @@
 </template>
 
 <script>
-import json from '../../componentList.json'
 export default {
   name: 'componentDetails',
   data() {
     return {
-    
-        componentObject: this.$route.params.name
+        componentObject: this.$route.query.data
     }
   }
 }
