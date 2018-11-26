@@ -9,8 +9,6 @@ new Vue({
   router,
   el: '#app',
   render(h) {
-    return h(App, {
-      
-    })
+    return h(App, {})
   }
 })
