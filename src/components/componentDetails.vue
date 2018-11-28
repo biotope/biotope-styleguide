@@ -1,3 +1,4 @@
+import iframe from ''
 <template>
    <div class="componentDetails">
     <router-link to="/">Back to Overview</router-link>
@@ -6,7 +7,7 @@
     <div class="componentDetails__variant" v-for="variant in componentObject.componentVariants">
       <h2>{{variant.name}}</h2>
       <p>{{variant.description}}</p>
-      <iframe :src="variant.url" width="300" height="200"></iframe>
+      <iframe class="componentDetails__iframe" :src="variant.url" width="100%" v-resize></iframe>
     </div>
   </div>
 </template>
@@ -21,3 +22,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.componentDetails {
+  &__iframe {
+    border: 0;
+  }
+}
+</style>
