@@ -14,7 +14,7 @@
     <h2>Components</h2>
     <ul class="styleGuide__items">
       <li v-for="component in componentList" class="styleGuide__item">
-        <router-link :to="{ name: 'componentDetails', params: { name: component.componentName }, query: { data: JSON.stringify(component) }}">{{ component.componentName }}</router-link>
+        <router-link :to="{ name: 'componentDetails', params: { name: component.componentName }}">{{ component.componentName }}</router-link>
         <p><span class="styleGuide__meta">Description:</span>{{ component.description }}</p>
         <p><span class="styleGuide__meta">Category:</span>{{ component.category }}</span></p>
         <p><span class="styleGuide__meta">Component Variants:</span><span v-for="variant in component.componentVariants">{{ variant }} </span></p>
@@ -46,6 +46,7 @@ export default {
     this.$http.get('componentList.json').then(response => {
       if(response.status === 200) {
         this.componentList = response.body;
+        this.$parent.components = response.body;
       } else {
         console.log('unable to load componentList.json');
       }

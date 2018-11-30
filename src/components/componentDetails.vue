@@ -1,4 +1,3 @@
-import iframe from ''
 <template>
    <div class="componentDetails">
     <router-link to="/">Back to Overview</router-link>
@@ -8,17 +7,28 @@ import iframe from ''
       <h2>{{variant.name}}</h2>
       <p>{{variant.description}}</p>
       <iframe class="componentDetails__iframe" :src="variant.url" width="100%" v-resize></iframe>
+      <div class="componentDetails__code">
+        <prism language="html" class="line-numbers">
+           {{variant.hbs}}
+        </prism>
+      </div>
     </div>
+        {{componentObject2}}
   </div>
 </template>
 
 <script>
+import Prism from 'vue-prism-component'
+
 export default {
   name: 'componentDetails',
   data() {
     return {
-        componentObject: JSON.parse(this.$route.query.data)
+        componentObject: this.$parent.components[this.$route.params.name]
     }
+  },
+  components: {
+    Prism
   }
 }
 </script>
