@@ -1,5 +1,8 @@
 <template>
   <div class="styleGuide">
+    <ul class="styleGuide__category">
+        <li v-for="category in categories" class="styleGuide__category" v-bind:class="{ 'is-active': (activeCategory === category)}"><a @click="setActiveCategory(category)" href="#">{{ category }}</a></li>
+    </ul>
     <input type="search" v-model="searchString" placeholder="Suche...">
     <div class="styleGuide__sort">
         <span v-for="item in listOfSort">
@@ -25,6 +28,8 @@ export default {
     return {
       sortedComponentList: {},
       activeListOfSort: [],
+      categories: ['Alle'],
+      activeCategory: 'Alle',
       listOfSort: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
       searchString: ''
     }
@@ -48,12 +53,17 @@ export default {
         this.activeListOfSort = [];
         for(const sortArray in currentObject) {
             currentObject[sortArray].forEach((item) => {
-                if(item.componentName.toLowerCase().match(this.searchString.toLowerCase())) {
-                     if (!newObject[sortArray]) {
-                         this.activeListOfSort.push(sortArray);
-                        newObject[sortArray] = [];
-                     }
-                     newObject[sortArray].push(item);
+                if(this.categories.indexOf(item.category) === -1) {
+                    this.categories.push(item.category);
+                }
+                if(this.activeCategory === 'Alle' || this.activeCategory === item.category) {
+                    if(item.componentName.toLowerCase().match(this.searchString.toLowerCase())) {
+                        if (!newObject[sortArray]) {
+                            this.activeListOfSort.push(sortArray);
+                            newObject[sortArray] = [];
+                        }
+                        newObject[sortArray].push(item);
+                    }
                 }
             });
         }
@@ -62,6 +72,9 @@ export default {
   },
 
   methods: {
+      setActiveCategory: function(categoryString) {
+          this.activeCategory = categoryString;
+      },
       isSortItemDisabled: function(item) {
           return !(this.activeListOfSort.indexOf(item) > -1);
       },
@@ -102,6 +115,14 @@ export default {
         max-width: $styleGuide-max-width;
         a {
             color: $styleGuide-link-color;
+        }
+
+        &__category {
+            &.is-active {
+                a {
+                    color: red;
+                }
+            }
         }
 
         &__sort {
