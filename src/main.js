@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+import VueScrollTo from 'vue-scrollto'
 import iFrameResize from 'iframe-resizer/js/iframeResizer'
 import App from './App.vue'
 import router from './routes'
@@ -12,8 +12,8 @@ Vue.directive('resize', {
         iFrameResize({log:false, autoResize: true}, el);
     }
 });
-
-Vue.use(VueResource)
+Vue.use(VueScrollTo);
+Vue.use(VueResource);
 
 new Vue({
   router,

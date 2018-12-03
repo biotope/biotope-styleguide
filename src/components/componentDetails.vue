@@ -13,7 +13,6 @@
         </prism>
       </div>
     </div>
-        {{componentObject2}}
   </div>
 </template>
 

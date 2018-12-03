@@ -1,26 +1,19 @@
 <template>
   <div class="styleGuide">
-    <img v-if="logoUrl" class="styleGuide__logo" :src="logoUrl"/>
-    <h1 v-if="projectName" class="styleGuide__headline">{{projectName}}</h1>
-    <p v-if="customer" class="styleGuide__subheadline">{{customer}}</p>
-
-    <h2>Filter by Component Variants</h2>
-
-
-    <ul class="styleGuide__filters">
-        <li v-for="variant in componentVariants" class="styleGuide__filter" v-on:click="onFilterByComponentVariant">{{variant}}</li>
-    </ul>
-
-    <h2>Components</h2>
-    <ul class="styleGuide__items">
-      <li v-for="component in componentList" class="styleGuide__item">
-        <router-link :to="{ name: 'componentDetails', params: { name: component.componentName }}">{{ component.componentName }}</router-link>
-        <p><span class="styleGuide__meta">Description:</span>{{ component.description }}</p>
-        <p><span class="styleGuide__meta">Category:</span>{{ component.category }}</span></p>
-        <p><span class="styleGuide__meta">Component Variants:</span><span v-for="variant in component.componentVariants">{{ variant }} </span></p>
-        <p><span class="styleGuide__meta">Type:</span>{{ component.type}}</p>
-      </li>
-    </ul>
+    <input type="search" v-model="searchString" placeholder="Suche...">
+    <div class="styleGuide__sort">
+        <span v-for="item in listOfSort">
+            <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#' + item}">{{item}}</button>
+        </span>
+    </div>
+    <div :id="index" v-for="(componentList,index) in filteredComponentList">
+        <h2>{{index}}</h2>
+        <ul class="styleGuide__items">
+            <li v-for="component in componentList" class="styleGuide__item">
+                <router-link :to="{ name: 'componentDetails', params: { name: component.componentName }}">{{ component.componentName }}</router-link>
+            </li>
+        </ul>
+    </div>
   </div>
 </template>
 
@@ -30,43 +23,63 @@ export default {
 
   data () {
     return {
-      componentList: {},
-      projectName: 'Biotope',
-      customer: 'Virtual Identity',
-      logoUrl: 'https://avatars1.githubusercontent.com/u/34653144?s=200&v=4',
-      componentVariants: [
-          'fullsize',
-          'blub',
-          'sidebar'
-      ]
+      sortedComponentList: {},
+      activeListOfSort: [],
+      listOfSort: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
+      searchString: ''
     }
   },
 
    created() {
     this.$http.get('componentList.json').then(response => {
       if(response.status === 200) {
-        this.componentList = response.body;
         this.$parent.components = response.body;
+        this.sortedComponentList = this.groupedContacts(response.body);
       } else {
         console.log('unable to load componentList.json');
       }
     })
   },
 
-  methods: {
-      onFilterByComponentVariant: function(event) {
-          console.log('#####onFilterByComponentVariant');
-          console.log(event.target);
-/*
-          if (event.target.classList.contains('styleGuide__filter--active')) {
-            event.target.classList.remove('styleGuide__filter--active');
-          } else {
-            event.target.classList.add('styleGuide__filter--active');
-          }
-          */
+  computed: {
+      filteredComponentList: function() {
+        let currentObject = JSON.parse(JSON.stringify(this.sortedComponentList));
+        let newObject = {};
+        this.activeListOfSort = [];
+        for(const sortArray in currentObject) {
+            currentObject[sortArray].forEach((item) => {
+                if(item.componentName.toLowerCase().match(this.searchString.toLowerCase())) {
+                     if (!newObject[sortArray]) {
+                         this.activeListOfSort.push(sortArray);
+                        newObject[sortArray] = [];
+                     }
+                     newObject[sortArray].push(item);
+                }
+            });
+        }
+        return newObject;
       }
-  }
+  },
+
+  methods: {
+      isSortItemDisabled: function(item) {
+          return !(this.activeListOfSort.indexOf(item) > -1);
+      },
+      groupedContacts: (componentsList) => {
+        let groupedComponentList = {};
+        for(const component in componentsList) {
+            const firstLetter = component.charAt(0);
+             if (!groupedComponentList[firstLetter]) {
+                groupedComponentList[firstLetter] = [];
+            }
+            let entry = groupedComponentList[firstLetter];
+            entry.push(componentsList[component]);
+        }
+        return groupedComponentList;
+      }
+   }
 }
+
 </script>
 
 <style lang="scss">
@@ -89,6 +102,10 @@ export default {
         max-width: $styleGuide-max-width;
         a {
             color: $styleGuide-link-color;
+        }
+
+        &__sort {
+           // margin-bottom: 3000px;
         }
         &__headline {
         }
