@@ -1,0 +1,20 @@
+{
+    "biotope": {
+        "componentName": "Accordion",
+        "description": "Accordion Component! Sooooo nice!",
+        "layout": "layouts/layout.default",
+        "entryPoint": "accordion.hbs",
+        "category": "Content",
+        "componentVariants": [
+            {
+                "name": "Accordion standart Component",
+                "description": "Auf und zu",
+                "file": "accordion.hbs"
+            }
+        ],
+        "type": "structuralComponent",
+        "allowedInGrid": false,
+        "allowedNested": [],
+        "path": "src/components/basicComponents/accordion/accordion.hbs"
+    }
+}

@@ -6,7 +6,13 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+=======
+    "merge": "node src/index.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "start": "npm run merge && npm run dev",
+>>>>>>> b8c6c4344526350bbc37b19d696612233333b822
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {

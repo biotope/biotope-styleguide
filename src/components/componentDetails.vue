@@ -23,7 +23,11 @@ export default {
   name: 'componentDetails',
   data() {
     return {
+<<<<<<< HEAD
         componentObject: this.$parent.components[this.$route.params.name]
+=======
+        componentObject: this.$parent.components.find((el) => el.componentName === this.$route.params.name)
+>>>>>>> b8c6c4344526350bbc37b19d696612233333b822
     }
   },
   components: {
