@@ -23,7 +23,7 @@ export default {
   name: 'componentDetails',
   data() {
     return {
-        componentObject: this.$parent.components[this.$route.params.name]
+        componentObject: this.$parent.components.find((el) => el.componentName === this.$route.params.name)
     }
   },
   components: {

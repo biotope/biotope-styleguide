@@ -1,0 +1,51 @@
+{
+    "biotope": {
+        "componentName": "Buttons",
+        "description": "Buttons Buttons Buttons!!!!",
+        "layout": "layouts/layout.default",
+        "entryPoint": "button.hbs",
+        "category": "Content",
+        "componentVariants": [
+            {
+                "name": "Button Standard",
+                "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+                "file": "variants/standard.hbs",
+                "url": "content.buttons-standard.html",
+                "hbs": "<section class=\"row\">\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' icon='btn--icon ui-icon-drucken' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' disabled='is-disabled' float='btn--right' content='Button rechts gefloatet' }}\r\n\t</div>\r\n</section>\r\n<section class=\"row\">\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--recommended' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--recommended' icon='btn--icon ui-icon-drucken' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--recommended' disabled='is-disabled' }}\r\n\t</div>\r\n</section>"
+            },
+            {
+                "name": "Button Full-Size",
+                "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+                "file": "variants/full-size.hbs",
+                "url": "content.buttons-full-size.html",
+                "hbs": "<section class=\"row\">\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' icon='btn--icon ui-icon-drucken' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' disabled='is-disabled' float='btn--right' content='Button rechts gefloatet' }}\r\n\t</div>\r\n</section>"
+            },
+            {
+                "name": "Button Call-to-Action",
+                "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+                "file": "variants/cta.hbs",
+                "url": "content.buttons-cta.html",
+                "hbs": "<section class=\"row\">\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--action' content='Informationen' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--action' icon='btn--icon ui-icon-vermoegenswirksameleistung' content='Informationen' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--action' icon='btn--icon ui-icon-vermoegenswirksameleistung' content='Hier klicken für mehr Informationen' }}\r\n\t</div>\r\n</section>"
+            },
+            {
+                "name": "Link als Button",
+                "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+                "file": "variants/link.hbs",
+                "url": "content.buttons-link.html",
+                "hbs": "<section class=\"row\">\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button.link' icon='btn--icon ui-icon-drucken' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button.link' type='btn--recommended' full='btn--full' icon='btn--icon ui-icon-drucken' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button.link' type='btn--action' icon='btn--icon ui-icon-vermoegenswirksameleistung' content='Hier klicken für mehr Informationen' }}\r\n\t</div>\r\n</section>"
+            },
+            {
+                "name": "Buttons for adtelligence test",
+                "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+                "file": "variants/adtelligence-test.hbs",
+                "url": "content.buttons-adtelligence-test.html",
+                "hbs": "<section class=\"row no-divider\">\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--orange' icon='btn--icon ui-icon-pfeilrechts' content='Termin vereinbaren' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button.link' type='btn--orange' icon='btn--icon ui-icon-pfeilrechts' content='Berater finden' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--orange' float='btn--right' icon='btn--icon ui-icon-pfeilrechts' content='Button rechts gefloatet' }}\r\n\t</div>\r\n</section>\r\n<section class=\"row\">\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--orange btn--biggerPadding' icon='btn--icon ui-icon-pfeilrechts' content='Termin vereinbaren' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button.link' type='btn--orange btn--biggerPadding' icon='btn--icon ui-icon-pfeilrechts' content='Berater finden' }}\r\n\t</div>\r\n\t<div class=\"xs-12 md-4\">\r\n\t\t{{bioInclude 'components/basicComponents/button/include/button' type='btn--orange btn--biggerPadding' float='btn--right' icon='btn--icon ui-icon-pfeilrechts' content='Button rechts gefloatet' }}\r\n\t</div>\r\n</section>"
+            }
+        ],
+        "type": "structuralComponent",
+        "allowedInGrid": false,
+        "allowedNested": [],
+        "path": "src/components/basicComponents/button/button.hbs",
+        "url": "content.buttons.html"
+    }
+}
