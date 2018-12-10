@@ -1,23 +1,38 @@
 {
+    "name": "teaser",
+    "description": "Buttons Buttons Buttons!!!!",
+    "version": "0.0.1",
     "biotope": {
-        "componentName": "Teaser",
-        "description": "Amazing teaser",
+        "status": "new",
         "layout": "layouts/layout.default",
-        "entryPoint": "teaser.hbs",
-        "category": "Framework",
-        "componentVariants": [
-            {
-                "name": "Header Standard",
-                "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
-                "file": "header.hbs",
-                "url": "framework.header-header.html",
-                "hbs": "<!-- DEV-NOTE: class=\"header--handshakeRight\" can be used on <header> -->\r\n<header id=\"header\" role=\"banner\">\r\n\r\n\t<div class=\"handshake\">\r\n\t\t<!-- home link -->\r\n\t\t\t<a title=\"Union Investment\" href=\"javascript:void(0)\" class=\"global-logo\">Union Investment</a>\r\n\t</div>\r\n\r\n\t<div class=\"navigation-wrapper\">\r\n\r\n\t\t<!-- main nav -->\r\n\t\t<nav role=\"navigation\" class=\"main\" id=\"navigation\">\r\n\t\t{{bioInclude 'components/framework/navigation' }}\r\n\t\t</nav>\r\n\r\n\t\t<!-- service nav -->\r\n\t\t{{bioInclude 'components/framework/service-navigation' notification_flyout=notification_flyout login_flyout=login_flyout logged_in=logged_in }}\r\n\r\n\t\t<!-- mobile menu button -->\r\n\t\t<a href=\"javascript:void(0)\" role=\"button\" class=\"off-canvas-toggle\">Navigation</a>\r\n\r\n\t</div>\r\n\r\n</header>\r\n"
-            }
-        ],
+        "entryPoint": "button.hbs",
+        "category": "Content",
+        "componentVariants": [{
+            "name": "Button Standard",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+            "file": "variants/standard.hbs"
+        },
+        {
+            "name": "Button Full-Size",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+            "file": "variants/full-size.hbs"
+        },
+        {
+            "name": "Button Call-to-Action",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+            "file": "variants/cta.hbs"
+        },
+        {
+            "name": "Link als Button",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+            "file": "variants/link.hbs"
+        },
+        {
+            "name": "Buttons for adtelligence test",
+            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
+            "file": "variants/adtelligence-test.hbs"
+        }],
         "type": "structuralComponent",
-        "allowedInGrid": false,
-        "allowedNested": [],
-        "path": "src/components/framework/header/header.hbs",
-        "url": "framework.header.html"
+        "allowedInGrid": [12, 6, 4, 3, 2, 1]
     }
 }

@@ -1,19 +1,21 @@
 <template>
   <div class="styleGuide">
     <ul class="styleGuide__category">
-        <li v-for="category in categories" class="styleGuide__category" v-bind:class="{ 'is-active': (activeCategory === category)}"><a @click="setActiveCategory(category)" href="#">{{ category }}</a></li>
+        <li v-for="category in categories" class="styleGuide__category" v-bind:class="{ 'is-active': (activeCategory === category)}" :key="category">
+            <a @click="setActiveCategory(category)" href="#">{{ category }}</a>
+        </li>
     </ul>
     <input type="search" v-model="searchString" placeholder="Suche...">
     <div class="styleGuide__sort">
-        <span v-for="item in listOfSort">
+        <span v-for="item in listOfSort" :key="item">
             <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#' + item}">{{item}}</button>
         </span>
     </div>
-    <div :id="index" v-for="(componentList,index) in filteredComponentList">
+    <div :id="index" v-for="(componentList,index) in filteredComponentList" :key="index">
         <h2>{{index}}</h2>
         <ul class="styleGuide__items">
-            <li v-for="component in componentList" class="styleGuide__item">
-                <router-link :to="{ name: 'componentDetails', params: { name: component.componentName }}">{{ component.componentName }}</router-link>
+            <li v-for="component in componentList" class="styleGuide__item" :key="component.name">
+                <router-link :to="{ name: 'details', params: { name: component.name }}">{{ component.name }}</router-link>
             </li>
         </ul>
     </div>
@@ -26,40 +28,37 @@ export default {
 
   data () {
     return {
-      sortedComponentList: {},
+      sortedComponentList: [],
       activeListOfSort: [],
       categories: ['Alle'],
       activeCategory: 'Alle',
       listOfSort: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
-      searchString: ''
+      searchString: '',
+      components: []
     }
   },
 
-   created() {
-    this.$http.get('componentList.json').then(response => {
-      if(response.status === 200) {
-        this.$parent.components = response.body;
-        this.sortedComponentList = this.groupedContacts(response.body);
-      } else {
-        console.log('unable to load componentList.json');
-      }
-    })
+   mounted() {
+    this.sortedComponentList = this.groupedContacts(this.$root.$data.componentList);
+   
   },
 
   computed: {
       filteredComponentList: function() {
-        let currentObject = JSON.parse(JSON.stringify(this.sortedComponentList));
+        let currentObject = JSON.parse(JSON.stringify(this.groupedContacts(this.$root.$data.componentList)));
         let newObject = {};
-        this.activeListOfSort = [];
+        let activeListOfSort = [];
+        let categories = this.categories;
         for(const sortArray in currentObject) {
             currentObject[sortArray].forEach((item) => {
-                if(this.categories.indexOf(item.category) === -1) {
-                    this.categories.push(item.category);
+                if(categories.indexOf(item.biotope.category) === -1) {
+                    categories.push(item.biotope.category);
                 }
-                if(this.activeCategory === 'Alle' || this.activeCategory === item.category) {
-                    if(item.componentName.toLowerCase().match(this.searchString.toLowerCase())) {
+                if(this.activeCategory === 'Alle' || this.activeCategory === item.biotope.category) {
+                    if(item.name.toLowerCase().match(this.searchString.toLowerCase())) {
                         if (!newObject[sortArray]) {
-                            this.activeListOfSort.push(sortArray);
+            
+                            activeListOfSort.push(sortArray);
                             newObject[sortArray] = [];
                         }
                         newObject[sortArray].push(item);
@@ -67,27 +66,43 @@ export default {
                 }
             });
         }
+        this.setactiveListOfSort(activeListOfSort);
+        this.setCategories(categories);
         return newObject;
-      }
+      },
   },
 
   methods: {
+        getComponents: function() {
+          return this.$parent.components;
+      },
+      setactiveListOfSort: function(newActiveListOfSort) {
+            this.activeListOfSort = newActiveListOfSort;
+      },
+
+      setCategories: function(newCategories) {
+            this.categories = newCategories;
+      },
+
       setActiveCategory: function(categoryString) {
           this.activeCategory = categoryString;
       },
+
       isSortItemDisabled: function(item) {
           return !(this.activeListOfSort.indexOf(item) > -1);
       },
-      groupedContacts: (componentsList) => {
+
+      groupedContacts: function(componentsList) {
         let groupedComponentList = {};
-        for(const component in componentsList) {
-            const firstLetter = component.charAt(0);
+        componentsList.forEach((component) => {
+            const firstLetter = component.name.charAt(0).toUpperCase();
              if (!groupedComponentList[firstLetter]) {
                 groupedComponentList[firstLetter] = [];
             }
-            let entry = groupedComponentList[firstLetter];
-            entry.push(componentsList[component]);
-        }
+           
+           
+            groupedComponentList[firstLetter].push(component);
+        });
         return groupedComponentList;
       }
    }

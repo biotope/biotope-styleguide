@@ -33,7 +33,7 @@ const mergeComponentDefinitions = (origin) => {
 
     const contents = packages.map((package) => JSON.parse(fs.readFileSync(package, 'utf8')));
 
-    return contents.map(content => content.biotope);
+    return contents.map(content => content);
 };
 
 const writeComponentDefinitionsFromTo = (origin, target) => {
@@ -44,7 +44,7 @@ const writeComponentDefinitionsFromTo = (origin, target) => {
     );
 }
 
-writeComponentDefinitionsFromTo('./demo/components', './componentList.json')
+writeComponentDefinitionsFromTo('./demo/components', './public/componentList.json')
 
 
 
