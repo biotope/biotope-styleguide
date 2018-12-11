@@ -1,4 +1,6 @@
+
 var path = require('path'), fs = require('fs');
+const config = require('./../config');
 
 const fromDir = (startPath, filter) => {
 
@@ -44,7 +46,7 @@ const writeComponentDefinitionsFromTo = (origin, target) => {
     );
 }
 
-writeComponentDefinitionsFromTo('./demo/components', './public/componentList.json')
+writeComponentDefinitionsFromTo(config.styleGuide.scanPath, config.styleGuide.outputFile)
 
 
 
