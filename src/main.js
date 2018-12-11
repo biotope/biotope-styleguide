@@ -4,9 +4,10 @@ import VueScrollTo from 'vue-scrollto'
 import IFrameResize from 'iframe-resizer/js/iframeResizer'
 import App from './App.vue'
 import router from './router'
-import VueResource from 'vue-resource'
+import store from './store'
 import 'prismjs'
 import 'prismjs/themes/prism.css'
+
 
 Vue.config.productionTip = false;
 Vue.directive('resize', {
@@ -16,25 +17,13 @@ Vue.directive('resize', {
 });
 Vue.use(Vuex);
 Vue.use(VueScrollTo);
-Vue.use(VueResource);
 
 new Vue({
+  store,
   data:{
     componentList: []
   },
   mounted() {
-    this.getComponentList();
-  },
-  methods: {
-    getComponentList() {
-      this.$http.get('../componentList.json').then(response => {
-        if(response.status === 200) {
-           this.componentList = response.body;
-        } else {
-          console.log('unable to load componentList.json');
-        }
-      })
-    }
   },
   router,
   render: h => h(App)

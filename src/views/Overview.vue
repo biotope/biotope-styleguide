@@ -28,24 +28,16 @@ export default {
 
   data () {
     return {
-      sortedComponentList: [],
       activeListOfSort: [],
       categories: ['Alle'],
       activeCategory: 'Alle',
       listOfSort: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
       searchString: '',
-      components: []
     }
   },
-
-   mounted() {
-    this.sortedComponentList = this.groupedContacts(this.$root.$data.componentList);
-   
-  },
-
   computed: {
-      filteredComponentList: function() {
-        let currentObject = JSON.parse(JSON.stringify(this.groupedContacts(this.$root.$data.componentList)));
+      filteredComponentList: function () {
+        let currentObject = JSON.parse(JSON.stringify(this.groupedContacts(this.$store.getters.getComponentList)));
         let newObject = {};
         let activeListOfSort = [];
         let categories = this.categories;
@@ -73,9 +65,6 @@ export default {
   },
 
   methods: {
-        getComponents: function() {
-          return this.$parent.components;
-      },
       setactiveListOfSort: function(newActiveListOfSort) {
             this.activeListOfSort = newActiveListOfSort;
       },

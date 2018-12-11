@@ -28,7 +28,7 @@ export default {
   
   computed: {
     getComponent: function() {
-      return this.$root.componentList.find(obj => obj.name === this.$route.params.name);
+      return this.$store.getters.getComponentList.find(obj => obj.name === this.$route.params.name);
     }
   },
   components: {
