@@ -1,6 +1,7 @@
 {
   "name": "biotope-styleguide",
   "description": "styleguide for biotope",
+  "version": "0.0.1",
   "author": "Christoph Hummel <christoph.hummel@virtual-identity.com>",
   "license": "MIT",
   "scripts": {
