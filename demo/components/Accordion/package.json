@@ -1,7 +1,7 @@
 {
     "name": "accordion",
     "description": "Buttons Buttons Buttons!!!!",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "biotope": {
         "status": "new",
         "layout": "layouts/layout.default",
@@ -10,27 +10,7 @@
         "componentVariants": [{
             "name": "Button Standard",
             "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
-            "file": "variants/standard.hbs"
-        },
-        {
-            "name": "Button Full-Size",
-            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
-            "file": "variants/full-size.hbs"
-        },
-        {
-            "name": "Button Call-to-Action",
-            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
-            "file": "variants/cta.hbs"
-        },
-        {
-            "name": "Link als Button",
-            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
-            "file": "variants/link.hbs"
-        },
-        {
-            "name": "Buttons for adtelligence test",
-            "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gube",
-            "file": "variants/adtelligence-test.hbs"
+            "file": "variants/data.hbs"
         }],
         "type": "structuralComponent",
         "allowedInGrid": [12, 6, 4, 3, 2, 1]

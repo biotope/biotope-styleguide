@@ -7,6 +7,8 @@ module.exports = {
         outputFile: './public/componentList.json'
     }
 };
+
+
 try {
     const projectConfig = require(path.join(cwd, 'projectConfig.js'));
     if (projectConfig) {
