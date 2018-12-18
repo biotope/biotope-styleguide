@@ -1,15 +1,15 @@
 {
-    "name": "accordion",
+    "name": "leadtext",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, ",
     "version": "0.0.1",
     "biotope": {
         "layout": "layouts/layout.default",
-        "entryPoint": "accordion.hbs",
+        "entryPoint": "leadtext.hbs",
         "category": "Content",
         "componentVariants": [{
-            "name": "Accordion",
-            "description": "Lead... text",
-            "file": "accordion.hbs"
+            "name": "Leadtext",
+            "description": "Auf und zu",
+            "file": "leadtext.hbs"
         }],
         "type": "structuralComponent",
         "allowedInGrid": false,

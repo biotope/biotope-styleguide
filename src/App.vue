@@ -1,7 +1,7 @@
 <template>
    <div>
       <span v-if="!isReady">Loading...</span>
-      <div v-if="isReady">
+      <div>
          <router-view />
       </div>
    </div>

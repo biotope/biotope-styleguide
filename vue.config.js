@@ -1,14 +1,14 @@
 module.exports = {
     css: {
         extract: {
-          filename: 'app.css',
-          chunkFilename: 'chunk-vendors.css'
+          filename: 'style-guide.css',
+          chunkFilename: 'style-guide-vendors.css'
         }
       },
 configureWebpack: {
     output: {
-      filename: "app.js",
-      chunkFilename: "chunk-vendors.js"
+      filename: "style-guide.js",
+      chunkFilename: "style-guide-vendors.js"
     }
   }
 }

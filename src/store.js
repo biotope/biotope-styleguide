@@ -14,6 +14,9 @@ export default new Vuex.Store({
   getters: {
     getComponentList: (state) => {
       return state.componentList
+    },
+    getComponentByName: (state) => (name) => {
+      return state.componentList.find(obj => obj.name === name);
     }
   },
   mutations: {
@@ -28,7 +31,7 @@ export default new Vuex.Store({
         .then(r => r.data)
         .then(list => {
         commit('setComponentList', list)
-        })
+      })
     }
   }
 })

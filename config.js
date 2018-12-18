@@ -4,10 +4,10 @@ const path = require('path');
 module.exports = {
     styleGuide: {
         scanPath: './demo/components',
-        outputFile: './public/componentList.json'
-    }
+        outputFile: './public/componentList.json',
+        distFolder: './public/examples/',
+      }
 };
-
 
 try {
     const projectConfig = require(path.join(cwd, 'projectConfig.js'));

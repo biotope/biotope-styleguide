@@ -6,10 +6,10 @@
     <div class="componentDetails__variant" v-for="variant in getComponent.biotope.componentVariants" :key="variant.name">
       <h2>{{variant.name}}</h2>
       <p>{{variant.description}}</p>
-      <iframe class="componentDetails__iframe" :src="variant.url" width="100%" v-resize></iframe>
+      <div v-html="getMarkupOfComponent(variant.url)" />
       <div class="componentDetails__code">
-        <prism language="html" class="line-numbers">
-           {{variant.hbs}}
+        <prism language="html">
+           {{ getMarkupOfComponent(variant.url) }}
         </prism>
       </div>
     </div>
@@ -18,19 +18,36 @@
 
 <script>
 import Prism from 'vue-prism-component'
+import axios from 'axios'
 
 export default {
   name: 'Details',
   data() {
     return {
+     
     }
   },
   
   computed: {
-    getComponent: function() {
-      return this.$store.getters.getComponentList.find(obj => obj.name === this.$route.params.name);
+    getComponent() {
+      return this.$store.getters.getComponentByName(this.$route.params.name);
     }
   },
+
+
+
+  methods: {
+    getMarkupOfComponent(url) {
+      console.log(url)
+      axios
+      .get(url)
+      .then(response => {
+         return response.data
+      })
+    }
+  },
+
+ 
   components: {
     Prism
   }
