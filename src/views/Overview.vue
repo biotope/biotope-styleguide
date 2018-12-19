@@ -37,7 +37,7 @@ export default {
   },
   computed: {
       filteredComponentList: function () {
-        let currentObject = JSON.parse(JSON.stringify(this.groupedContacts(this.$store.getters.getComponentList)));
+        let currentObject = JSON.parse(JSON.stringify(this.groupComponents(this.$store.getters.getComponentList)));
         let newObject = {};
         let activeListOfSort = [];
         let categories = this.categories;
@@ -81,7 +81,7 @@ export default {
           return !(this.activeListOfSort.indexOf(item) > -1);
       },
 
-      groupedContacts: function(componentsList) {
+      groupComponents: function(componentsList) {
         let groupedComponentList = {};
         componentsList.forEach((component) => {
             const firstLetter = component.name.charAt(0).toUpperCase();

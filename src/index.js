@@ -3,6 +3,16 @@ var path = require('path'), fs = require('fs');
 const config = require('./../config');
 const Handlebars = require('handlebars');
 const bioHelpers = require('./../src/hb2-helpers');
+
+const mkdirSync = function (dirPath) {
+    try {
+      fs.mkdirSync(dirPath)
+    } catch (err) {
+      if (err.code !== 'EEXIST') throw err
+    }
+  }
+
+
 const fromDir = (startPath, filter) => {
 
     if (!fs.existsSync(startPath)) {
@@ -14,29 +24,31 @@ const fromDir = (startPath, filter) => {
     return files.reduce((aggregated, filename) => {
         const filePath = path.join(startPath, filename);
         const stat = fs.lstatSync(filePath);
-
         if (stat.isDirectory()) {
+          
             return [
                 ...aggregated,
                 ...fromDir(filePath, filter)
             ]
         }
         else if (filter.test(filePath)) {
+    
             return [
                 ...aggregated,
                 filePath
             ]
         }
         else {
-            return []
+            return [...aggregated]
         }
-    }, []);
+    },[]);
 };
 
 const mergeComponentDefinitions = (origin) => {
     bioHelpers(Handlebars);
-    const packages = fromDir(origin, /package\.json$/);
 
+    mkdirSync(path.resolve(config.styleGuide.distFolder));
+    const packages = fromDir(origin, /package\.json$/);
     const contents = packages.map((package) => {
         let expandedPackage = package;
         const packageUrl = package;
@@ -44,18 +56,24 @@ const mergeComponentDefinitions = (origin) => {
         expandedPackage.biotope.componentVariants.forEach((variant, index) => {
             let variantUrl = packageUrl.replace('package.json','');
             variantUrl = variantUrl + variant.file.replace('/', '\\');
-            const url = config.styleGuide.distFolder + expandedPackage.name + '.' + variant.file.replace('.hbs', '.html').replace('\\variants\\', '');
+            const url = config.styleGuide.distFolder + expandedPackage.name + '.' + variant.file.replace('.hbs', '.html').replace('variants/', '');
             expandedPackage.biotope.componentVariants[index].url = url;
+         
             fs.readFile(variantUrl, 'utf8', (err, data) => {
-                const template = Handlebars.compile(data);
-                const result = template();
-                console.log(expandedPackage.biotope.componentVariants[index]);
+                let result;
+                let template;
+                try {
+                    template = Handlebars.compile(data);
+                    result = template({});
+                  } catch (err) {
+                    result = data; 
+                }
                 fs.writeFileSync(url, result);
             })
         });
         return expandedPackage;
     });
-    console.log(contents);
+
     return contents.map(content => content);
 };
 
@@ -68,6 +86,3 @@ const writeComponentDefinitionsFromTo = (origin, target) => {
 }
 
 writeComponentDefinitionsFromTo(config.styleGuide.scanPath, config.styleGuide.outputFile)
-
-
-
