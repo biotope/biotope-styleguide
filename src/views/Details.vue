@@ -1,63 +1,66 @@
 <template>
    <div class="componentDetails">
     <router-link to="/">Back to Overview</router-link>
-    <h1>Component: {{ getComponent.name }}</h1>
-    <p>{{ getComponent.description }}</p>
-    <div class="componentDetails__variant" v-for="variant in getComponent.biotope.componentVariants" :key="variant.name">
-      <h2>{{variant.name}}</h2>
-      <p>{{variant.description}}</p>
-      <div v-html="getMarkupOfComponent(variant.url)" />
-      <div class="componentDetails__code">
-        <prism language="html">
-           {{ getMarkupOfComponent(variant.url) }}
-        </prism>
+     <h1>{{ getComponent.name }}</h1>
+    <div class="componentDetails__grid">
+      <div class="componentDetails__col componentDetails__col--50">
+        <p>{{ getComponent.description }}</p>
+      </div>
+      <div class="componentDetails__col componentDetails__col--50">
+         <h2>Layout Optionen</h2>
+         <grid-option :grid-options="getComponent.biotope.allowedInGrid" />
       </div>
     </div>
+    <Variant v-for="variant in getComponent.biotope.componentVariants" :variant="variant" :key="variant" />
   </div>
 </template>
 
 <script>
-import Prism from 'vue-prism-component'
-import axios from 'axios'
+import Variant from './../components/Variant.vue'
+import GridOption from './../components/GridOption.vue'
+
 
 export default {
   name: 'Details',
-  data() {
-    return {
-     
-    }
-  },
-  
   computed: {
     getComponent() {
       return this.$store.getters.getComponentByName(this.$route.params.name);
     }
   },
-
-
-
-  methods: {
-    getMarkupOfComponent(url) {
-      console.log(url)
-      axios
-      .get(url)
-      .then(response => {
-         return response.data
-      })
-    }
-  },
-
- 
   components: {
-    Prism
+    Variant,
+    GridOption
   }
 }
 </script>
 
 <style lang="scss">
 .componentDetails {
-  &__iframe {
-    border: 0;
+
+  &__grid {
+  margin: 0 0 20px 0;
+  
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+
+  &__col {
+    float: left;
+
+    &--50 {
+      width: 100%;
+      @media (min-width: 768px) {
+        width: 50%;
+      }
+    }
+  }
+
+
+  &__info {
+    width: 100%;
   }
 }
 </style>

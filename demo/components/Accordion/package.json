@@ -1,6 +1,6 @@
 {
     "name": "accordion",
-    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, ",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, ",
     "version": "0.0.1",
     "biotope": {
         "layout": "layouts/layout.default",
@@ -12,7 +12,7 @@
             "file": "accordion.hbs"
         }],
         "type": "structuralComponent",
-        "allowedInGrid": false,
+        "allowedInGrid": [12, 6, 3, 0],
         "allowedNested": []
     }
 }

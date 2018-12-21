@@ -20,11 +20,6 @@ Vue.use(VueScrollTo);
 
 new Vue({
   store,
-  data:{
-    componentList: []
-  },
-  mounted() {
-  },
   router,
   render: h => h(App)
 }).$mount('#app')

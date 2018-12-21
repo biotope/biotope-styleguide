@@ -5,7 +5,8 @@ module.exports = {
     styleGuide: {
         scanPath: './demo/components',
         outputFile: './public/componentList.json',
-        distFolder: './public/examples/',
+        distFolder: './examples/',
+        distFolderLocation: './public/examples/'
       }
 };
 

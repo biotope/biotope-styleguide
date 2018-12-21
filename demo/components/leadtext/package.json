@@ -10,9 +10,14 @@
             "name": "Leadtext",
             "description": "Auf und zu",
             "file": "leadtext.hbs"
+        },
+        {
+            "name": "Leadtext 2",
+            "description": "Auf und zu",
+            "file": "leadtext.hbs"
         }],
         "type": "structuralComponent",
-        "allowedInGrid": false,
+        "allowedInGrid": [12],
         "allowedNested": []
     }
 }
