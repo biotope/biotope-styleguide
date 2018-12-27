@@ -38,7 +38,11 @@ export default {
 .componentDetails {
 
   &__grid {
-  margin: 0 0 20px 0;
+  display: block;
+
+  @media (min-width: 768px) {
+      display: flex;
+  }
   
     &:after {
       content: "";
@@ -48,12 +52,14 @@ export default {
   }
 
   &__col {
-    float: left;
+    flex: 1;
 
     &--50 {
       width: 100%;
+      padding: 0 10% 0 0;
       @media (min-width: 768px) {
         width: 50%;
+        flex: none;
       }
     }
   }

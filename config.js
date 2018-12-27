@@ -19,4 +19,4 @@ try {
   } catch (e) {
     const colors = require('colors/safe');
     console.log(colors.red('Error: ', e));
-  }
+}
