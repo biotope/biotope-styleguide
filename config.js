@@ -15,7 +15,7 @@ module.exports = {
     styleGuide: {
       outputFileName: 'componentList.json',
       variantDistFolderName: 'variants',
-      scanPath: src + components
+      scanPath: 'src/components'
     }
 };
 

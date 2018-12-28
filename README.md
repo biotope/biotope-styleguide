@@ -10,6 +10,15 @@ yarn install
 yarn run serve
 ```
 
+#Biotope Style-Guide
+
+Biotope Style-Guide is a depandancy of biotope-build and adds an automatic generated component overview for biotope.
+
+## How to use
+
+If you use bitope-build > 5.6.0 biotope-style-guide is allready part of you projet.
+
+
 ### Compiles and minifies for production
 ```
 yarn run build
