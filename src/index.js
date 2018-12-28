@@ -1,10 +1,7 @@
-
 var path = require('path'), fs = require('fs');
 const styleGuideConfig = require('./../config');
-const Handlebars = require('handlebars');
-const bioHelpers = require('./../src/hb2-helpers');
 
-module.exports = function (config) {
+module.exports = function (config, Handlebars, hbsHelper) {
     const mkdirSync = function (dirPath) {
         try {
         fs.mkdirSync(dirPath)
@@ -45,7 +42,7 @@ module.exports = function (config) {
     };
 
     const mergeComponentDefinitions = (origin) => {
-        bioHelpers(Handlebars);
+        hbsHelper(Handlebars);
         let dir = config.global.dev;
         if (!fs.existsSync(dir)){
             mkdirSync(dir);
@@ -54,9 +51,7 @@ module.exports = function (config) {
         if (!fs.existsSync(dir)) {
             mkdirSync(dir);
         }
-        console.log(origin);
         const packages = fromDir(origin, /package\.json$/);
-        console.log(origin);
         const contents = packages.map((package) => {
             let expandedPackage = package;
             const packageUrl = package;
@@ -69,12 +64,15 @@ module.exports = function (config) {
                 expandedPackage.biotope.componentVariants[index].url = urlForPackage;
             
                 fs.readFile(variantUrl, 'utf8', (err, data) => {
+                    console.log(data);
+                    console.log(typeof data);
                     let result;
                     let template;
                     try {
                         template = Handlebars.compile(data);
-                        result = template({});
+                        result = template();
                     } catch (err) {
+                        console.log(err);
                         result = data; 
                     }
                     fs.writeFileSync(url, result);
