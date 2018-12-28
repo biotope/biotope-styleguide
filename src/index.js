@@ -47,7 +47,7 @@ const fromDir = (startPath, filter) => {
 const mergeComponentDefinitions = (origin) => {
     bioHelpers(Handlebars);
 
-    mkdirSync(path.resolve(config.styleGuide.distFolderLocation));
+    mkdirSync(path.resolve(config.global.dev + config.styleGuide.variantDistFolderName));
     const packages = fromDir(origin, /package\.json$/);
     const contents = packages.map((package) => {
         let expandedPackage = package;
@@ -56,11 +56,9 @@ const mergeComponentDefinitions = (origin) => {
         expandedPackage.biotope.componentVariants.forEach((variant, index) => {
             let variantUrl = packageUrl.replace('package.json','');
             variantUrl = variantUrl + variant.file.replace('/', '\\');
-            const urlForPackage = config.styleGuide.distFolder + expandedPackage.name + '.' + variant.file.replace('.hbs', '.html').replace('variants/', '');
-            const url = config.styleGuide.distFolderLocation + expandedPackage.name + '.' + variant.file.replace('.hbs', '.html').replace('variants/', '');
+            const urlForPackage = config.styleGuide.variantDistFolderName + '/' + expandedPackage.name + '.' + variant.file.replace('.hbs', '.html').replace('variants/', '');
+            const url = config.global.dev + config.styleGuide.variantDistFolderName + '/' + expandedPackage.name + '.' + variant.file.replace('.hbs', '.html').replace('variants/', '');
             expandedPackage.biotope.componentVariants[index].url = urlForPackage;
-            console.log(urlForPackage);
-            console.log(url);
          
             fs.readFile(variantUrl, 'utf8', (err, data) => {
                 let result;
@@ -88,4 +86,4 @@ const writeComponentDefinitionsFromTo = (origin, target) => {
     );
 }
 
-writeComponentDefinitionsFromTo(config.styleGuide.scanPath, config.styleGuide.outputFile)
+writeComponentDefinitionsFromTo(config.styleGuide.scanPath, config.global.dev + config.styleGuide.outputFileName)
