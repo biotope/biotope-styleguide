@@ -1,24 +1,32 @@
 <template>
   <div class="styleGuide">
     <ul class="styleGuide__category">
-        <li v-for="category in categories" class="styleGuide__category" v-bind:class="{ 'is-active': (activeCategory === category)}" :key="category">
+        <li v-for="category in categories" class="styleGuide__categoryItem" v-bind:class="{ 'is-active': (activeCategory === category)}" :key="category">
             <a @click="setActiveCategory(category)" href="#">{{ category }}</a>
         </li>
     </ul>
-    <input type="search" v-model="searchString" placeholder="Suche...">
+
+    <input class="styleGuide__search" type="search" v-model="searchString" placeholder="Suche...">
+
     <div class="styleGuide__sort">
-        <span v-for="item in listOfSort" :key="item">
+        <span class="styleGuide__sortItem"  v-for="item in listOfSort.slice(0, 13)" :key="item">
+            <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#' + item}">{{item}}</button>
+        </span>
+    </div>
+    <div class="styleGuide__sort">
+        <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(13, 26)" :key="item">
             <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#' + item}">{{item}}</button>
         </span>
     </div>
     <div :id="index" v-for="(componentList,index) in filteredComponentList" :key="index">
-        <h2>{{index}}</h2>
+        <h3 class="styleGuide__letter">{{index}}</h3>
         <ul class="styleGuide__items">
             <li v-for="component in componentList" class="styleGuide__item" :key="component.name">
                 <router-link :to="{ name: 'details', params: { name: component.name }}">{{ component.name }}</router-link>
             </li>
         </ul>
     </div>
+    <div v-if="Object.getOwnPropertyNames(filteredComponentList).length == 0" class="styleGuide__noResult">Keine Treffer</div>
   </div>
 </template>
 
@@ -122,16 +130,60 @@ export default {
         }
 
         &__category {
-            &.is-active {
-                a {
-                    color: red;
-                }
+            padding: 20px 0;
+        
+        }
+        &__categoryItem {
+            display: inline-block;
+            padding: 0 15px;
+
+            &:first-of-type {
+                padding: 0 15px 0 0;
+            }
+
+            &:last-of-type {
+                padding: 0 0 0 15px ;
+            }
+
+            &.is-active a {
+                color: #000;
+                cursor: default;
+                text-decoration: none;
             }
         }
 
-        &__sort {
-           // margin-bottom: 3000px;
+        &__search {
+            margin: 10px 0;
+            padding: 5px;
+            width: 100%;
         }
+
+        &__sort{ 
+            display: flex;
+        }
+        &__sortItem {
+            flex: 1;
+            padding: 15px;
+
+            button {
+                background:none!important;
+                border:none; 
+                padding:0!important;
+                font: inherit;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+            button[disabled] {
+                cursor: default;
+                text-decoration: none;
+            }
+        }
+
+        &__letter {
+            border-bottom: 1px solid gray;
+        }
+
+
         &__headline {
         }
         &__subheadline {
