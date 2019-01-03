@@ -64,8 +64,6 @@ module.exports = function (config, Handlebars, hbsHelper) {
                 expandedPackage.biotope.componentVariants[index].url = urlForPackage;
             
                 fs.readFile(variantUrl, 'utf8', (err, data) => {
-                    console.log(data);
-                    console.log(typeof data);
                     let result;
                     let template;
                     try {
