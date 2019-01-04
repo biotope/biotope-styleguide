@@ -22,11 +22,27 @@ import GridOption from './../components/GridOption.vue'
 
 export default {
   name: 'Details',
+  data() {
+    return {
+      markupLoaded: 0
+    }
+  },
+  watch: {
+    markupLoaded: function(value) {
+      if(this.getComponent.biotope.componentVariants.length === value) {
+         const event = document.createEvent('Event');
+        event.initEvent('styleGuide-markupLoaded', true, true);
+        window.dispatchEvent(event);
+      }
+    }
+  },
   computed: {
+
     getComponent() {
       return this.$store.getters.getComponentByName(this.$route.params.name);
     }
   },
+ 
   components: {
     Variant,
     GridOption

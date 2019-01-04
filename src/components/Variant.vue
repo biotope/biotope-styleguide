@@ -49,7 +49,9 @@ export default {
       .then(response => {
         this.isLoading = false;
         this.componentMarkup = response.data;
-
+        this.$nextTick(() => {
+          this.$parent.markupLoaded = this.$parent.markupLoaded+1;
+        })
       })
     }
   },
