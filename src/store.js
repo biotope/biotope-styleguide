@@ -27,7 +27,7 @@ export default new Vuex.Store({
   actions: {
     loadComponentList ({ commit }) {
       axios
-        .get('../componentList.json')
+        .get('componentList.json')
         .then(r => r.data)
         .then(list => {
         commit('setComponentList', list)
