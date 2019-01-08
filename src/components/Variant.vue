@@ -5,18 +5,18 @@
         
         </div>
         <div v-if="!isLoading">
-            <div class="componentDetails__variant">
+            <div class="styleGuide__variant">
                 <h2>{{variant.name}}</h2>
                 <p>{{variant.description}}</p>
-                <div class="componentDetails__markup">
+                <div class="styleGuide__markup">
                   <div v-html="componentMarkup" />
                 </div>
-                <div class="componentDetails__codeSection">
-                  <div class="componentDetails__toolbar">
-                    <button role="button" @click="show = !show">Code</button>
+                <div class="styleGuide__codeSection">
+                  <div class="styleGuide__toolbar">
+                    <a href="javascript:" class="styleGuide__showCode" :class="{ 'is-active': show}" @click="show = !show">Code</a>
                   </div>
                   <transition name="accordion-fade">
-                    <div v-if="show" class="componentDetails__code">
+                    <div v-if="show" class="styleGuide__code">
                       <prism language="html">{{ componentMarkup }}</prism>
                     </div>
                 </transition>
@@ -61,26 +61,75 @@ export default {
 }
 </script>
 <style lang="scss">
+$variant-background-color: #F6F6F6;
+$variant-border-color: #C5C5C5;
+$styleGuilde-color-primary: #337ab7;
 
-.componentDetails__markup {
-  background-color: lightgray;
-}
+.styleGuide {
 
-.accordion-fade-enter-active,
-.accordion-fade-leave-active {
-     transition: all .5s;
+  &__showCode {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding: 10px 15px 10px 10px;
+    position: relative;
+    text-decoration: none;
+ 
+      &::after {
+        position: relative;
+        /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
+        content: "";
+        display: inline-block;
+        /* By using an em scale, the arrows will size with the font */
+        width: 0.4em;
+        height: 0.4em;
+        border-right: 0.2em solid $styleGuilde-color-primary;
+        border-top: 0.2em solid $styleGuilde-color-primary;
+        transform: rotate(135deg);
+        margin-left: 0.4em;
+        transition: transform .3s ease-in-out;
+      }
+
+      &.is-active {
+          &:after {
+            transform: rotate(315deg);
+            transition: transform .3s ease-in-out;
+          }
+      }
+  }
+
+  &__code {
+    background-color: $variant-background-color;
+    padding: 1px;
+  }
+
+  &__markup {
+    padding: 15px;
+    background-color: $variant-background-color;
+  }
+
+  &__toolbar {
+    background-color: $variant-background-color;
+    border-top: 1px solid $variant-border-color;
+    border-bottom: 1px solid $variant-border-color;
+  }
+
+  .accordion-fade-enter-active,
+  .accordion-fade-leave-active {
+      transition: all .5s;
+  }
+  .accordion-fade-enter-active {
+      max-height: 10000px;
+      opacity: 1;
+  }
+  .accordion-fade-enter,
+  .accordion-fade-leave-active {
+      max-height: 0;
+      opacity: 0;
+  }
+  .accordion-fade-leave {
+      max-height: 10000px;
+      opacity: 1;
+  } 
 }
-.accordion-fade-enter-active {
-     max-height: 10000px;
-     opacity: 1;
-}
-.accordion-fade-enter,
-.accordion-fade-leave-active {
-    max-height: 0;
-    opacity: 0;
-}
-.accordion-fade-leave {
-    max-height: 10000px;
-    opacity: 1;
-} 
 </style>

@@ -1,24 +1,27 @@
 <template>
-  <div class="styleGuide">
+  <div class="styleGuide__overview">
     <ul class="styleGuide__category">
+        <li class="styleGuide__categoryItem" v-bind:class="{ 'is-active': (activeCategory === '')}">
+            <a @click="setActiveCategory()" href="#">{{ $t('overview_category_all') }}</a>
+        </li>
         <li v-for="category in categories" class="styleGuide__categoryItem" v-bind:class="{ 'is-active': (activeCategory === category)}" :key="category">
             <a @click="setActiveCategory(category)" href="#">{{ category }}</a>
         </li>
     </ul>
 
-    <input class="styleGuide__search" type="search" v-model="searchString" placeholder="Suche...">
+    <input class="styleGuide__search" type="search" v-model="searchString" :placeholder="$t('overview_search_placeholder')">
 
     <div class="styleGuide__sort">
         <span class="styleGuide__sortItem"  v-for="item in listOfSort.slice(0, 13)" :key="item">
-            <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#' + item}">{{item}}</button>
+            <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#styleGide-' + item}">{{item}}</button>
         </span>
     </div>
     <div class="styleGuide__sort">
         <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(13, 26)" :key="item">
-            <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#' + item}">{{item}}</button>
+            <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#styleGide-' + item}">{{item}}</button>
         </span>
     </div>
-    <div :id="index" v-for="(componentList,index) in filteredComponentList" :key="index">
+    <div :id="'styleGide-' + index" v-for="(componentList,index) in filteredComponentList" :key="index">
         <h3 class="styleGuide__letter">{{index}}</h3>
         <ul class="styleGuide__items">
             <li v-for="component in componentList" class="styleGuide__item" :key="component.name">
@@ -26,7 +29,7 @@
             </li>
         </ul>
     </div>
-    <div v-if="Object.getOwnPropertyNames(filteredComponentList).length == 0" class="styleGuide__noResult">Keine Treffer</div>
+    <div v-if="Object.getOwnPropertyNames(filteredComponentList).length == 0" class="styleGuide__noResult">{{ $t('overview_noResults') }}</div>
   </div>
 </template>
 
@@ -37,8 +40,8 @@ export default {
   data () {
     return {
       activeListOfSort: [],
-      categories: ['Alle'],
-      activeCategory: 'Alle',
+      categories: [],
+      activeCategory: '',
       listOfSort: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
       searchString: '',
     }
@@ -54,7 +57,7 @@ export default {
                 if(categories.indexOf(item.biotope.category) === -1) {
                     categories.push(item.biotope.category);
                 }
-                if(this.activeCategory === 'Alle' || this.activeCategory === item.biotope.category) {
+                if(this.activeCategory === '' || this.activeCategory === item.biotope.category) {
                     if(item.name.toLowerCase().match(this.searchString.toLowerCase())) {
                         if (!newObject[sortArray]) {
             
@@ -82,7 +85,7 @@ export default {
       },
 
       setActiveCategory: function(categoryString) {
-          this.activeCategory = categoryString;
+          this.activeCategory = categoryString || '';
       },
 
       isSortItemDisabled: function(item) {
@@ -119,12 +122,13 @@ export default {
     $styleGuide-link-color: $styleGuilde-color-primary;
     /* styleGuide - meta infos */
     $styleGuide-meta-color: #ccc;
-    $styleGuide-show-meta: true;
+
     .styleGuide {
         font-family: $styleGuide-font-family;
         color: $styleGuide-font-color;
         margin: 0 auto;
         max-width: $styleGuide-max-width;
+
         a {
             color: $styleGuide-link-color;
         }
@@ -166,13 +170,14 @@ export default {
             padding: 15px;
 
             button {
-                background:none!important;
-                border:none; 
-                padding:0!important;
+                background: none !important;
+                border: none; 
+                padding: 0 !important;
                 font: inherit;
                 cursor: pointer;
                 text-decoration: underline;
             }
+
             button[disabled] {
                 cursor: default;
                 text-decoration: none;
@@ -183,16 +188,6 @@ export default {
             border-bottom: 1px solid gray;
         }
 
-
-        &__headline {
-        }
-        &__subheadline {
-        }
-        &__logo {
-            max-width: 100px;
-        }
-        &__filters {
-        }
         &__filter {
             &.styleGuide__filter--active {
                 color: red;
@@ -201,17 +196,10 @@ export default {
         &__items {
             padding: 0;
         }
+
         &__item {
             padding: 0 0 40px;
             list-style-type: none;
-        }
-        &__meta {
-            @if $styleGuide-show-meta {
-                display: block;
-            }@else{
-                display: none;
-            }
-            color: $styleGuide-meta-color;
         }
     }
 </style>

@@ -1,13 +1,12 @@
 <template>
-   <div class="componentDetails">
+   <div class="stlyeGuide__details">
     <router-link to="/">Back to Overview</router-link>
      <h1>{{ getComponent.name }}</h1>
-    <div class="componentDetails__grid">
-      <div class="componentDetails__col componentDetails__col--50">
+    <div class="stlyeGuide__grid">
+      <div class="stlyeGuide__col stlyeGuide__col--50">
         <p>{{ getComponent.description }}</p>
       </div>
-      <div class="componentDetails__col componentDetails__col--50">
-         <h2>Layout Optionen</h2>
+      <div class="stlyeGuide__col stlyeGuide__col--50">
          <grid-option :grid-options="getComponent.biotope.allowedInGrid" />
       </div>
     </div>
@@ -51,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-.componentDetails {
+.stlyeGuide {
 
   &__grid {
   display: block;
@@ -78,11 +77,6 @@ export default {
         flex: none;
       }
     }
-  }
-
-
-  &__info {
-    width: 100%;
   }
 }
 </style>

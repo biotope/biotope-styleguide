@@ -1,9 +1,7 @@
 <template>
-   <div>
+   <div class="styleGuide">
       <span v-if="!isReady">Loading...</span>
-      <div v-if="isReady">
-         <router-view />
-      </div>
+      <router-view  v-if="isReady" />
    </div>
 </template>
 
