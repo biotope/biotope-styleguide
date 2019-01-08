@@ -8,7 +8,8 @@
     "merge": "node src/index.js",
     "serve": "npm run merge && vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "docs": "docsify serve docs"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -29,6 +30,7 @@
     "@vue/cli-plugin-eslint": "^3.2.0",
     "@vue/cli-service": "^3.2.0",
     "babel-eslint": "^10.0.1",
+    "docsify": "^4.8.6",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
     "node-sass": "^4.9.0",
