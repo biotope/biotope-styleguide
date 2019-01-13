@@ -48,6 +48,11 @@ export default {
   },
   computed: {
       filteredComponentList: function () {
+        const matches = (searchString, packageJsonItem) => {
+        console.log(packageJsonItem.biotope);
+        console.log((packageJsonItem.biotope.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase())));    
+        return packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.biotope.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
+        }
         let currentObject = JSON.parse(JSON.stringify(this.groupComponents(this.$store.getters.getComponentList)));
         let newObject = {};
         let activeListOfSort = [];
@@ -58,7 +63,7 @@ export default {
                     categories.push(item.biotope.category);
                 }
                 if(this.activeCategory === '' || this.activeCategory === item.biotope.category) {
-                    if(item.name.toLowerCase().match(this.searchString.toLowerCase())) {
+                    if(matches(this.searchString, item)) {
                         if (!newObject[sortArray]) {
             
                             activeListOfSort.push(sortArray);
@@ -200,6 +205,13 @@ export default {
         &__item {
             padding: 0 0 40px;
             list-style-type: none;
+
+            a {
+                display: block;
+            }
+            &:first-letter {
+                text-transform: capitalize;
+            }
         }
     }
 </style>

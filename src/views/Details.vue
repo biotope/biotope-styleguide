@@ -2,6 +2,9 @@
    <div class="stlyeGuide__details">
     <router-link to="/">Back to Overview</router-link>
      <h1>{{ getComponent.name }}</h1>
+     <p v-if="getComponent.biotope.tags.length > 0">Tags:
+       <span v-for="tag in getComponent.biotope.tags" :key="tag">{{tag}}</span>
+      </p>
     <div class="stlyeGuide__grid">
       <div class="stlyeGuide__col stlyeGuide__col--50">
         <p>{{ getComponent.description }}</p>

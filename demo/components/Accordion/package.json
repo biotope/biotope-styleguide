@@ -3,6 +3,8 @@
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, ",
     "version": "0.0.1",
     "biotope": {
+        "tags": ["Quotation"],
+        "status": "",
         "layout": "layouts/layout.default",
         "entryPoint": "accordion.hbs",
         "category": "Content",

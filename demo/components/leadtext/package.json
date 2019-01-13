@@ -3,6 +3,7 @@
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, ",
     "version": "0.0.1",
     "biotope": {
+        "tags": ["Quotation"],
         "layout": "layouts/layout.default",
         "entryPoint": "leadtext.hbs",
         "category": "Content",
