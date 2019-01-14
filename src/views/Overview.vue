@@ -48,11 +48,8 @@ export default {
   },
   computed: {
       filteredComponentList: function () {
-        const matches = (searchString, packageJsonItem) => {
-        console.log(packageJsonItem.biotope);
-        console.log((packageJsonItem.biotope.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase())));    
-        return packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.biotope.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
-        }
+        const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.biotope.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
+        
         let currentObject = JSON.parse(JSON.stringify(this.groupComponents(this.$store.getters.getComponentList)));
         let newObject = {};
         let activeListOfSort = [];

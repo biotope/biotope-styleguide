@@ -1,12 +1,12 @@
 var path = require('path'), fs = require('fs');
-const styleGuideConfig = require('./../config');
+const styleGuideConfig = require('../config');
 
 module.exports = function (config, Handlebars, hbsHelper) {
     const mkdirSync = function (dirPath) {
         try {
-        fs.mkdirSync(dirPath)
+            fs.mkdirSync(dirPath)
         } catch (err) {
-        if (err.code !== 'EEXIST') throw err
+            if (err.code !== 'EEXIST') throw err;
         }
     }
 

@@ -1,38 +1,14 @@
-# style
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-#Biotope Style-Guide
+#biotope-style-guide
 
 Biotope Style-Guide is a depandancy of biotope-build and adds an automatic generated component overview for biotope.
 
-## How to use
+Documentation can be found here: https://style-guide.bioto.pe
 
-If you use bitope-build > 5.6.0 biotope-style-guide is allready part of you projet.
+##Contributing
+We appreciate new contributors, to contribute we decided to use the "fork-and-pull" git worklow:
 
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. Fork the repo on GitHub
+2. Clone the project to your own machine
+3. Commit changes to your own branch
+4. Push your work back up to your fork
+5. Submit a Pull request so that we can review your changes
