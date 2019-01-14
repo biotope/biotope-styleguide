@@ -17,7 +17,7 @@ module.exports = {
       variantDistFolderName: 'variants',
       scanPath: 'src/components',
       language: 'en'
-    }
+    } 
 };
 
 try {

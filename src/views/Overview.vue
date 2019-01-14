@@ -47,10 +47,11 @@ export default {
     }
   },
   computed: {
-      filteredComponentList: function () {
+      filteredComponentList: function() {
         const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.biotope.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
-        
-        let currentObject = JSON.parse(JSON.stringify(this.groupComponents(this.$store.getters.getComponentList)));
+
+        let currentObject = this.groupComponents(this.$store.getters.getComponentList);
+
         let newObject = {};
         let activeListOfSort = [];
         let categories = this.categories;
@@ -96,13 +97,11 @@ export default {
 
       groupComponents: function(componentsList) {
         let groupedComponentList = {};
-        componentsList.forEach((component) => {
+        componentsList.forEach(component => {
             const firstLetter = component.name.charAt(0).toUpperCase();
              if (!groupedComponentList[firstLetter]) {
                 groupedComponentList[firstLetter] = [];
             }
-           
-           
             groupedComponentList[firstLetter].push(component);
         });
         return groupedComponentList;
