@@ -1,6 +1,6 @@
 <template>
     <div class="gridOption">
-        <h2 class="gridOption__headline">{{ $t('details_layoutOption_headline') }}</h2>
+        <h3 class="gridOption__headline">{{ $t('details_layoutOption_headline') }}</h3>
         <div class="gridOption__grid">
             <div class="gridOption__row gridOption__row--12" v-bind:class="{'is-active': canBeUsedinGrid(12)}">
                 <div class="gridOption__col" v-for="i in 1" :key="i" title="12 in 12" />
@@ -49,6 +49,7 @@ export default {
     $gridOption-row-active-color: #40B226;
     .gridOption {
         &__grid {
+            margin-top: 15px;
             width: 300px;
             padding: 5px 0;
             background: $gridOption-background-color;

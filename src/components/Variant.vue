@@ -4,23 +4,21 @@
         Loading Component...
         
         </div>
-        <div v-if="!isLoading">
-            <div class="styleGuide__variant">
-                <h2>{{variant.name}}</h2>
-                <p>{{variant.description}}</p>
-                <div class="styleGuide__markup">
-                  <div v-html="componentMarkup" />
-                </div>
-                <div class="styleGuide__codeSection">
-                  <div class="styleGuide__toolbar">
-                    <a href="javascript:" class="styleGuide__showCode" :class="{ 'is-active': show}" @click="show = !show">Code</a>
-                  </div>
-                  <transition name="accordion-fade">
-                    <div v-if="show" class="styleGuide__code">
-                      <prism language="html">{{ componentMarkup }}</prism>
-                    </div>
-                </transition>
+        <div v-if="!isLoading" class="styleGuide__variant">
+            <h2>{{variant.name}}</h2>
+            <p>{{variant.description}}</p>
+              <div class="styleGuide__markup">
+                <div v-html="componentMarkup" />
               </div>
+            <div class="styleGuide__codeSection" :class="{ 'is-active': show}">
+              <div class="styleGuide__toolbar">
+                <a href="javascript:" class="styleGuide__showCode" @click="show = !show">Code</a>
+              </div>
+              <transition name="accordion-fade">
+                 <div v-if="show" class="styleGuide__code">
+                    <prism language="html">{{ componentMarkup }}</prism>
+                 </div>
+              </transition>
             </div>
         </div>
     </div>
@@ -67,20 +65,27 @@ $styleGuilde-color-primary: #337ab7;
 
 .styleGuide {
 
+  &__codeSection {
+    &.is-active {
+      .styleGuide__code {
+          &:after {
+            transform: rotate(315deg);
+            transition: transform .3s ease-in-out;
+          }
+      }
+    }
+  }
+
   &__showCode {
-    display: inline-block;
+    position: relative;
+    display: block;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     padding: 10px 15px 10px 10px;
-    position: relative;
     text-decoration: none;
  
-      &::after {
-        position: relative;
-        /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
-        content: "";
-        display: inline-block;
-        /* By using an em scale, the arrows will size with the font */
+      &:after {
+        position: absolute;
         width: 0.4em;
         height: 0.4em;
         border-right: 0.2em solid $styleGuilde-color-primary;
@@ -88,13 +93,6 @@ $styleGuilde-color-primary: #337ab7;
         transform: rotate(135deg);
         margin-left: 0.4em;
         transition: transform .3s ease-in-out;
-      }
-
-      &.is-active {
-          &:after {
-            transform: rotate(315deg);
-            transition: transform .3s ease-in-out;
-          }
       }
   }
 
