@@ -8,7 +8,7 @@
             <a @click="setActiveCategory(category)" href="#">{{ category }}</a>
         </li>
     </ul>
-    <div class="stlyeGuide__searchWrapper">
+    <div class="styleGuide__searchWrapper">
         <input class="styleGuide__search" type="search" v-model="searchString" :placeholder="$t('overview_search_placeholder')">
     </div>
     <div class="styleGuide__sort">

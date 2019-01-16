@@ -1,15 +1,15 @@
 <template>
-   <div class="stlyeGuide__details">
-    <router-link class="stlyeGuide__link" to="/">Back to Overview</router-link>
-     <h1 class="stlyeGuide__h1">{{ getComponent.name }}</h1>
-     <p class="stlyeGuide__tags" v-if="getComponent.biotope.tags.length > 0">Tags:
-       <span class="stlyeGuide__tag" v-for="tag in getComponent.biotope.tags" :key="tag">{{tag}}</span>
+   <div class="styleGuide__details">
+    <router-link class="styleGuide__link" to="/">Back to Overview</router-link>
+     <h1 class="styleGuide__h1">{{ getComponent.name }}</h1>
+     <p class="styleGuide__tags" v-if="getComponent.biotope.tags.length > 0">Tags:
+       <span class="styleGuide__tag" v-for="tag in getComponent.biotope.tags" :key="tag">{{tag}}</span>
       </p>
-    <div class="stlyeGuide__grid">
-      <div class="stlyeGuide__col stlyeGuide__col--50">
-        <p class="stlyeGuide__description">{{ getComponent.description }}</p>
+    <div class="styleGuide__grid">
+      <div class="styleGuide__col styleGuide__col--50">
+        <p class="styleGuide__description">{{ getComponent.description }}</p>
       </div>
-      <div class="stlyeGuide__col stlyeGuide__col--50">
+      <div class="styleGuide__col styleGuide__col--50">
          <grid-option :grid-options="getComponent.biotope.allowedInGrid" />
       </div>
     </div>
@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss">
-.stlyeGuide {
+.styleGuide {
 
   &__grid {
   display: block;
