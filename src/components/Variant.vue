@@ -2,17 +2,16 @@
     <div>
         <div v-if="isLoading">
         Loading Component...
-        
         </div>
         <div v-if="!isLoading" class="styleGuide__variant">
-            <h2>{{variant.name}}</h2>
+            <h3>{{variant.name}}</h3>
             <p>{{variant.description}}</p>
               <div class="styleGuide__markup">
                 <div v-html="componentMarkup" />
               </div>
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}">
               <div class="styleGuide__toolbar">
-                <a href="javascript:" class="styleGuide__showCode" @click="show = !show">Code</a>
+                <a href="javascript:" class="styleGuide__showCode" @click="show = !show">{{ $t('details_code_buttonText') }}</a>
               </div>
               <transition name="accordion-fade">
                  <div v-if="show" class="styleGuide__code">

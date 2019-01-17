@@ -3,6 +3,8 @@
     "overview_search_placeholder": "Suche...",
     "overview_noResults": "Keine Treffer",
 	"details_backToOverview": "Zurück zur Übersicht",
+	"details_tags": "Tags",
     "details_layoutOption_headline": "Layout Optionen",
-    "details_code_buttonText": "HTML"
+    "details_code_buttonText": "HTML",
+    "details_variants": "Varianten"
 }

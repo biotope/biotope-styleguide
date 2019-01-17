@@ -2,7 +2,9 @@
     "overview_category_all": "All",
     "overview_search_placeholder": "Search...",
     "overview_noResults": "No results",
-	"details_backToOverview": "Back to Overview",
+    "details_backToOverview": "Back to Overview",
+    "details_tags": "Tags",
     "details_layoutOption_headline": "Layout Option",
-    "details_code_buttonText": "HTML"
+    "details_code_buttonText": "HTML",
+    "details_variants": "Variants"
 }
