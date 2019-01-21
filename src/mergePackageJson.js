@@ -42,6 +42,14 @@ module.exports = function (config, Handlebars, hbsHelper) {
     };
 
     const mergeComponentDefinitions = (origin) => {
+
+        var COMMENT_PSEUDO_COMMENT_OR_LT_BANG = new RegExp(
+            '<!--[\\s\\S]*?(?:-->)?'
+            + '<!---+>?'  // A comment with no body
+            + '|<!(?![dD][oO][cC][tT][yY][pP][eE]|\\[CDATA\\[)[^>]*>?'
+            + '|<[?][^>]*>?',  // A pseudo-comment
+            'g');
+
         hbsHelper(Handlebars);
         let dir = config.global.dev;
         if (!fs.existsSync(dir)){
@@ -69,6 +77,7 @@ module.exports = function (config, Handlebars, hbsHelper) {
                     try {
                         template = Handlebars.compile(data);
                         result = template();
+                        result = result.replace(COMMENT_PSEUDO_COMMENT_OR_LT_BANG, "");
                     } catch (err) {
                         console.log(err);
                         result = data; 

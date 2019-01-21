@@ -1,8 +1,8 @@
 {
-  "name": "biotope-styleguide",
+  "name": "@biotope/styleguide",
   "description": "styleguide for biotope",
-  "version": "0.0.1",
-  "author": "Christoph Hummel <christoph.hummel@virtual-identity.com>",
+  "version": "1.0.0",
+  "author": "Biotope",
   "license": "MIT",
   "scripts": {
     "merge": "node demo/runMerge.js",
