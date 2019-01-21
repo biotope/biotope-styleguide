@@ -13,7 +13,7 @@ import translationsEn from './languages/en.json'
 import translationsDe from './languages/de.json'
 
 
-
+var divSelector = '#styleGuide';
 Vue.config.productionTip = false;
 Vue.directive('resize', {
   inserted: function (el) {
@@ -21,7 +21,9 @@ Vue.directive('resize', {
   }
 });
 Vue.use(Vuex);
-Vue.use(VueScrollTo);
+Vue.use(VueScrollTo, {
+  offset: parseInt(document.querySelector(divSelector).dataset.scrollOffset) || 0
+});
 Vue.use(vuexI18n.plugin, store);
 
 
@@ -34,7 +36,7 @@ Vue.i18n.add('en', translationsEn);
 Vue.i18n.add('de', translationsDe);
 
 // set the start locale to use
-const usedLanguage = document.querySelector('#styleGuide').dataset.lang || 'en';
+const usedLanguage = document.querySelector(divSelector).dataset.lang || 'en';
 Vue.i18n.set(usedLanguage);
 
 
@@ -42,4 +44,4 @@ new Vue({
   store,
   router,
   render: h => h(App)
-}).$mount('#styleGuide')
+}).$mount(divSelector)
