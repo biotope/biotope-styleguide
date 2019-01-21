@@ -1,10 +1,10 @@
-#biotope-style-guide
+# biotope-style-guide
 
 Biotope Style-Guide is a depandancy of biotope-build and adds an automatic generated component overview for biotope.
 
-Documentation can be found here: https://style-guide.bioto.pe
+Documentation can be found here: https://style-guide.biotope.sh
 
-##Contributing
+## Contributing
 We appreciate new contributors, to contribute we decided to use the "fork-and-pull" git worklow:
 
 1. Fork the repo on GitHub
