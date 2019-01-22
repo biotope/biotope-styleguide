@@ -7,7 +7,7 @@ import router from './router'
 import store from './store'
 import vuexI18n from 'vuex-i18n';
 import 'prismjs'
-import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism-okaidia.css'
 
 import translationsEn from './languages/en.json'
 import translationsDe from './languages/de.json'
