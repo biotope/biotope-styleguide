@@ -9,7 +9,8 @@ Vue.use(VueAxios, axios)
 
 export default new Vuex.Store({
   state: {
-     componentList: []
+     componentList: [],
+     selectedGrid: 12,
   },
 
   getters: {
@@ -18,14 +19,23 @@ export default new Vuex.Store({
     },
     getComponentByName: (state) => (name) => {
       return state.componentList.find(obj => obj.name === name);
+    },
+    getSelectedGrid: (state) => {
+      return state.selectedGrid;
     }
   },
   mutations: {
     setComponentList (state, list) {
-      state.componentList = list
+      state.componentList = list;
+    },
+    setSelectedGrid (state, grid) {
+      state.selectedGrid = grid;
     }
   },
   actions: {
+    loadSelectedGrid ({ commit }, grid) {
+      commit('setSelectedGrid', grid);
+    },
     loadComponentList ({ commit }) {
       axios
         .get('componentList.json')

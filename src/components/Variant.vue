@@ -7,7 +7,11 @@
             <h3>{{variant.name}}</h3>
             <p>{{variant.description}}</p>
               <div class="styleGuide__markup">
-                <div v-html="componentMarkup" />
+                <div class="row">
+                  <div :class="getGrid">
+                    <div v-html="componentMarkup" />
+                  </div>
+                </div>
               </div>
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}">
               <div class="styleGuide__toolbar">
@@ -38,6 +42,11 @@ export default {
   },
   created: function() {
       this.getMarkupOfComponent(this.variant.url);
+  },
+  computed: {
+    getGrid() {
+      return 'md-' + this.$store.getters.getSelectedGrid;
+    }
   },
   methods: {
      getMarkupOfComponent: function(url) {

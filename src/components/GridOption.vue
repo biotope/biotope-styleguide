@@ -3,25 +3,22 @@
         <h3 class="gridOption__headline">{{ $t('details_layoutOption_headline') }}</h3>
         <div class="gridOption__grid">
             <div class="gridOption__row gridOption__row--12" v-bind:class="{'is-active': canBeUsedinGrid(12)}">
-                <div class="gridOption__col" v-for="i in 1" :key="i" title="12 in 12" />
+                <div @click="setGrid(12)" class="gridOption__col" v-for="i in 1" :key="i" title="12 in 12" />
             </div>
             <div class="gridOption__row gridOption__row--6" v-bind:class="{'is-active': canBeUsedinGrid(6)}">
-                <div class="gridOption__col" v-for="j in 2" :key="j" title="6 in 12" />
+                <div @click="setGrid(6)" class="gridOption__col" v-for="j in 2" :key="j" title="6 in 12" />
             </div>
             <div class="gridOption__row gridOption__row--4" v-bind:class="{'is-active': canBeUsedinGrid(4)}">
-                <div class="gridOption__col" v-for="k in 3" :key="k" title="4 in 12" />
+                <div @click="setGrid(4)" class="gridOption__col" v-for="k in 3" :key="k" title="4 in 12" />
             </div>
             <div class="gridOption__row gridOption__row--3" v-bind:class="{'is-active': canBeUsedinGrid(3)}">
-                <div class="gridOption__col" v-for="l in 4" :key="l" title="3 in 12" />
+                <div @click="setGrid(3)" class="gridOption__col" v-for="l in 4" :key="l" title="3 in 12" />
             </div>
             <div class="gridOption__row gridOption__row--2" v-bind:class="{'is-active': canBeUsedinGrid(2)}">
-                <div class="gridOption__col" v-for="m in 6" :key="m" title="2 in 12" />
-            </div>
-            <div class="gridOption__row gridOption__row--1" v-bind:class="{'is-active': canBeUsedinGrid(1)}">
-                <div class="gridOption__col" v-for="n in 12" :key="n" title="1 in 12" />
+                <div @click="setGrid(2)" class="gridOption__col" v-for="m in 6" :key="m" title="2 in 12" />
             </div>
             <div class="gridOption__row gridOption__row--0" v-bind:class="{'is-active': canBeUsedinGrid(0)}">
-                <div class="gridOption__col gridOption__col--full" title="Fullscreen" />
+                <div @click="setGrid(0)" class="gridOption__col gridOption__col--full" title="Fullscreen" />
             </div>
         </div>
     </div>
@@ -37,6 +34,9 @@ export default {
         }
     },
     methods: {
+        setGrid: function(grid) {
+            this.$store.dispatch('loadSelectedGrid',grid);
+        },
         canBeUsedinGrid: function(grid) {
             return this.gridOptions.includes(grid);
         }
@@ -114,6 +114,7 @@ export default {
             background-color: $gridOption-row-color;
             height: 10px;
             margin-right: 5px;
+            cursor: pointer;
             &:last-of-type {
                 margin-right: 0;
             }

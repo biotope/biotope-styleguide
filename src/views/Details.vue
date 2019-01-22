@@ -40,7 +40,6 @@ export default {
     }
   },
   computed: {
-
     getComponent() {
       return this.$store.getters.getComponentByName(this.$route.params.name);
     }
