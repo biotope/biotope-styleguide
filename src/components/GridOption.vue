@@ -1,5 +1,5 @@
 <template>
-    <div class="gridOption">
+    <div class="gridOption" v-if="showGrid">
         <h3 class="gridOption__headline">{{ $t('details_layoutOption_headline') }}</h3>
         <div class="gridOption__grid">
             <div class="gridOption__row gridOption__row--12" v-bind:class="{'is-active': canBeUsedinGrid(12)}">
@@ -27,15 +27,30 @@
 
 export default {
     name: 'GridOption',
+    data() {
+        return {
+            showGrid: true   
+        }
+    },
     props: {
         gridOptions: {
             type: Array,
             required: true
         }
     },
+    created: function () {
+        const allowedInGridArray = this.$parent.getComponent.biotope.allowedInGrid;
+        if(allowedInGridArray.length) {
+           this.$store.dispatch('loadSelectedGrid',allowedInGridArray[0]);
+        } else {
+            this.showGrid = false;
+        }
+    },
     methods: {
         setGrid: function(grid) {
-            this.$store.dispatch('loadSelectedGrid',grid);
+            if(this.canBeUsedinGrid(grid)) {
+                this.$store.dispatch('loadSelectedGrid',grid);
+            }
         },
         canBeUsedinGrid: function(grid) {
             return this.gridOptions.includes(grid);
@@ -89,12 +104,6 @@ export default {
                } 
             }
 
-             &--1 {
-               .gridOption__col {
-                   width: calc(100% / 12);
-               } 
-            }
-
              &--0 {
                 margin: 10px 0;
                .gridOption__col {
@@ -104,6 +113,7 @@ export default {
              &.is-active {
                  .gridOption__col {
                     background-color: $gridOption-row-active-color; 
+                    cursor: pointer;
                  }
             }
         }
@@ -114,7 +124,6 @@ export default {
             background-color: $gridOption-row-color;
             height: 10px;
             margin-right: 5px;
-            cursor: pointer;
             &:last-of-type {
                 margin-right: 0;
             }

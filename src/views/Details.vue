@@ -1,6 +1,8 @@
 <template>
    <div class="styleGuide__details">
-    <router-link class="styleGuide__link" to="/">{{ $t('details_backToOverview') }}</router-link>
+    <router-link class="styleGuide__goBackLink" to="/">
+      <span>{{ $t('details_backToOverview') }}</span>
+    </router-link>
      <h1 class="styleGuide__h1">{{ getComponent.name }}</h1>
      <p class="styleGuide__tags" v-if="getComponent.biotope.tags.length > 0">{{ $t('details_tags') }}:
        <span class="styleGuide__tag" v-for="tag in getComponent.biotope.tags" :key="tag">{{tag}}</span>
@@ -13,8 +15,10 @@
          <grid-option :grid-options="getComponent.biotope.allowedInGrid" />
       </div>
     </div>
-    <h2>{{ $t('details_variants') }}</h2>
-    <Variant class="styleGuide__variants" v-for="variant in getComponent.biotope.componentVariants" :variant="variant" :key="variant" />
+    <h2 class="styleGuide__variantsHeadline">{{ $t('details_variants') }}</h2>
+    <div class="styleGuide__variants">
+      <Variant v-for="variant in getComponent.biotope.componentVariants" :variant="variant" :key="variant" />
+    </div>
   </div>
 </template>
 

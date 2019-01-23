@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div class="styleGuide__variant">
         <div v-if="isLoading">
         Loading Component...
         </div>
         <div v-if="!isLoading" class="styleGuide__variant">
-            <h3>{{variant.name}}</h3>
-            <p>{{variant.description}}</p>
+            <h3 class="styleGuide__variantHeadline">{{variant.name}}</h3>
+            <p class="styleGuide__variantDescription">{{variant.description}}</p>
               <div class="styleGuide__markup">
                 <div class="row">
                   <div :class="getGrid">
