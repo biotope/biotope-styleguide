@@ -5,7 +5,7 @@
         </div>
         <div v-if="!isLoading" class="styleGuide__variant">
             <h3 class="styleGuide__variantHeadline">{{variant.name}}</h3>
-            <p class="styleGuide__variantDescription">{{variant.description}}</p>
+            <p class="styleGuide__variantDescription" v-html="variant.description"></p>
               <div class="styleGuide__markup">
                 <div class="row">
                   <div :class="getGrid">

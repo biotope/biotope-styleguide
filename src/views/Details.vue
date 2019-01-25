@@ -9,7 +9,7 @@
       </p>
     <div class="styleGuide__grid">
       <div class="styleGuide__col styleGuide__col--50">
-        <p class="styleGuide__description">{{ getComponent.description }}</p>
+        <p class="styleGuide__description" v-html="getComponent.description"></p>
       </div>
       <div class="styleGuide__col styleGuide__col--50">
          <grid-option :grid-options="getComponent.biotope.allowedInGrid" />
