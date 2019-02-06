@@ -1,57 +1,30 @@
 <template>
-   <div class="styleGuide__details">
-    <router-link class="styleGuide__goBackLink" to="/">
-      <span>{{ $t('details_backToOverview') }}</span>
-    </router-link>
-     <h1 class="styleGuide__h1">{{ getComponent.name }}</h1>
-     <p class="styleGuide__tags" v-if="getComponent.biotope.tags.length > 0">{{ $t('details_tags') }}:
-       <span class="styleGuide__tag" v-for="tag in getComponent.biotope.tags" :key="tag">{{tag}}</span>
-      </p>
-    <div class="styleGuide__grid">
-      <div class="styleGuide__col styleGuide__col--50">
-        <p class="styleGuide__description" v-html="getComponent.description"></p>
-      </div>
-      <div class="styleGuide__col styleGuide__col--50">
-         <grid-option :grid-options="getComponent.biotope.allowedInGrid" />
-      </div>
-    </div>
-    <h2 class="styleGuide__variantsHeadline">{{ $t('details_variants') }}</h2>
-    <div class="styleGuide__variants">
-      <Variant v-for="variant in getComponent.biotope.componentVariants" :variant="variant" :key="variant" />
-    </div>
-  </div>
+   <div v-html="this.filteredComponentList"></div>
 </template>
 
 <script>
-import Variant from './../components/Variant.vue'
-import GridOption from './../components/GridOption.vue'
-
 
 export default {
   name: 'Details',
-  data() {
-    return {
-      markupLoaded: 0
+  
+  asyncComputed: {
+    filteredComponentList: async function() {
+      const componentList = await this.requestComponentMarkup();
+      return componentList;
     }
   },
-  watch: {
-    markupLoaded: function(value) {
-      if(this.getComponent.biotope.componentVariants.length === value) {
-         const event = document.createEvent('Event');
-        event.initEvent('styleGuide-markupLoaded', true, true);
-        window.dispatchEvent(event);
+        
+  methods: {
+    requestComponentMarkup: async function() {
+      try {
+        const response = await fetch('/component/'+ this.$route.params.name);
+        const json = await response.json();
+        return json;
+      } catch(e) {
+        console.log(e);
+        return '<h1>Hello Component</h1>';
       }
-    }
-  },
-  computed: {
-    getComponent() {
-      return this.$store.getters.getComponentByName(this.$route.params.name);
-    }
-  },
- 
-  components: {
-    Variant,
-    GridOption
+    },
   }
 }
 </script>
