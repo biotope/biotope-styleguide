@@ -21,7 +21,6 @@ export default {
         const json = await response.json();
         return json;
       } catch(e) {
-        console.log(e);
         return '<h1>Hello Component</h1>';
       }
     },

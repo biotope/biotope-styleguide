@@ -25,12 +25,11 @@
     "vue": "^2.5.17",
     "vue-async-computed": "^3.5.2",
     "vue-axios": "^2.1.4",
+    "vue-i18n": "^8.8.0",
     "vue-prism-component": "^1.1.1",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
-    "vue-scrollto": "^2.13.0",
-    "vuex": "^3.0.1",
-    "vuex-i18n": "^1.11.0"
+    "vue-scrollto": "^2.13.0"
   },
   "devDependencies": {
     "@types/express": "^4.16.1",

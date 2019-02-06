@@ -100,7 +100,6 @@ export default {
             const json = await response.json();
             return json;
         } catch(e) {
-            console.log(e);
             return [{
                 name: 'accordion',
                 tags: ['accordeon'],
