@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueScrollTo from 'vue-scrollto'
+import AsyncComputed from 'vue-async-computed'
 import IFrameResize from 'iframe-resizer/js/iframeResizer'
 import App from './App.vue'
 import router from './router'
@@ -20,6 +21,7 @@ Vue.directive('resize', {
     IFrameResize({log:false, autoResize: true}, el);
   }
 });
+Vue.use(AsyncComputed);
 Vue.use(Vuex);
 Vue.use(VueScrollTo, {
   offset: parseInt(document.querySelector(divSelector).dataset.scrollOffset) || 0

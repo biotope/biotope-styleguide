@@ -21,6 +21,7 @@
             <button :disabled="isSortItemDisabled(item)" v-scroll-to="{ el: '#styleGide-' + item}">{{item}}</button>
         </span>
     </div>
+    <div v-if="!$asyncComputed.filteredComponentList.updating">
     <div :id="'styleGide-' + index" v-for="(componentList,index) in filteredComponentList" :key="index">
         <h3 class="styleGuide__letter">{{index}}</h3>
         <ul class="styleGuide__items">
@@ -29,7 +30,10 @@
             </li>
         </ul>
     </div>
-    <div v-if="Object.getOwnPropertyNames(filteredComponentList).length == 0" class="styleGuide__noResult">{{ $t('overview_noResults') }}</div>
+    </div>
+    <div v-if="!$asyncComputed.filteredComponentList.updating">
+        <div v-if="Object.keys(filteredComponentList).length == 0" class="styleGuide__noResult">{{ $t('overview_noResults') }}</div>
+    </div>
   </div>
 </template>
 
@@ -44,41 +48,72 @@ export default {
       activeCategory: '',
       listOfSort: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
       searchString: '',
+      componentList: {
+          'A': [
+              {
+                  name: 'accordion',
+                  tags: ['accordeon'],
+                  category: 'Content'
+              }
+          ]
+      }
     }
   },
-  computed: {
-      filteredComponentList: function() {
-        const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.biotope.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
 
-        let currentObject = this.groupComponents(this.$store.getters.getComponentList);
+  asyncComputed: {
+      filteredComponentList: {
 
-        let newObject = {};
-        let activeListOfSort = [];
-        let categories = this.categories;
-        for(const sortArray in currentObject) {
-            currentObject[sortArray].forEach((item) => {
-                if(categories.indexOf(item.biotope.category) === -1) {
-                    categories.push(item.biotope.category);
-                }
-                if(this.activeCategory === '' || this.activeCategory === item.biotope.category) {
-                    if(matches(this.searchString, item)) {
-                        if (!newObject[sortArray]) {
-            
-                            activeListOfSort.push(sortArray);
-                            newObject[sortArray] = [];
-                        }
-                        newObject[sortArray].push(item);
+        get: async function() {
+            const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
+
+            const componentList = await this.requestComponents();
+            let currentObject = this.groupComponents(componentList);
+
+            let newObject = {};
+            let activeListOfSort = [];
+            let categories = this.categories;
+            for(const sortArray in currentObject) {
+                currentObject[sortArray].forEach((item) => {
+                    if(categories.indexOf(item.category) === -1) {
+                        categories.push(item.category);
                     }
-                }
-            });
+                    if(this.activeCategory === '' || this.activeCategory === item.category) {
+                        if(matches(this.searchString, item)) {
+                            if (!newObject[sortArray]) {
+                
+                                activeListOfSort.push(sortArray);
+                                newObject[sortArray] = [];
+                            }
+                            newObject[sortArray].push(item);
+                        }
+                    }
+                });
+            }
+            this.setactiveListOfSort(activeListOfSort);
+            this.setCategories(categories);
+            return newObject;
+        },
+        watch () {
+            this.searchString;
         }
-        this.setactiveListOfSort(activeListOfSort);
-        this.setCategories(categories);
-        return newObject;
-      },
+      }
   },
 
   methods: {
+      requestComponents: async function() {
+        try {
+            const response = await fetch('/components');
+            const json = await response.json();
+            return json;
+        } catch(e) {
+                console.log(e);
+                return [{
+                  name: 'accordion',
+                  tags: ['accordeon'],
+                  category: 'Content'
+              }];
+        }
+      },
       setactiveListOfSort: function(newActiveListOfSort) {
             this.activeListOfSort = newActiveListOfSort;
       },
