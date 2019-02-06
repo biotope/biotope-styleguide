@@ -4,18 +4,24 @@
   "version": "1.0.0",
   "author": "Biotope",
   "license": "MIT",
+  "main": "dist/index.js",
   "scripts": {
     "merge": "node demo/runMerge.js",
     "start": "npm run merge && vue-cli-service serve",
+    "start:server": "nodemon",
+    "build:server": "tsc src/server/*.ts --outDir dist/server && cpy src/server/index.html dist/server/",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "docs": "docsify serve docs"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
     "handlebars": "^4.0.12",
     "iframe-resizer": "^3.6.3",
     "prismjs": "^1.15.0",
+    "showdown": "^1.9.0",
     "vue": "^2.5.17",
     "vue-axios": "^2.1.4",
     "vue-prism-component": "^1.1.1",
@@ -26,15 +32,20 @@
     "vuex-i18n": "^1.11.0"
   },
   "devDependencies": {
+    "@types/express": "^4.16.1",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.0",
     "@vue/cli-service": "^3.2.0",
     "babel-eslint": "^10.0.1",
+    "cpy-cli": "^2.0.0",
     "docsify": "^4.8.6",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
     "node-sass": "^4.9.0",
+    "nodemon": "^1.18.9",
     "sass-loader": "^7.0.1",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.1",
     "vue-template-compiler": "^2.5.17"
   }
 }
