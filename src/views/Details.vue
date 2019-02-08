@@ -1,23 +1,23 @@
 <template>
-   <div class="styleGuide__details">
+   <div v-if="component" class="styleGuide__details">
     <router-link class="styleGuide__goBackLink" to="/">
       <span>{{ $t('details_backToOverview') }}</span>
     </router-link>
-     <h1 class="styleGuide__h1">{{ getComponent.name }}</h1>
-     <p class="styleGuide__tags" v-if="getComponent.biotope.tags.length > 0">{{ $t('details_tags') }}:
-       <span class="styleGuide__tag" v-for="tag in getComponent.biotope.tags" :key="tag">{{tag}}</span>
+     <h1 class="styleGuide__h1">{{ component.name }}</h1>
+     <p class="styleGuide__tags" v-if="component.keywords.length > 0">{{ $t('details_tags') }}:
+       <span class="styleGuide__tag" v-for="tag in component.keywords" :key="tag">{{tag}}</span>
       </p>
     <div class="styleGuide__grid">
       <div class="styleGuide__col styleGuide__col--50">
-        <p class="styleGuide__description" v-html="getComponent.description"></p>
+        <p class="styleGuide__description" v-html="component.description"></p>
       </div>
       <div class="styleGuide__col styleGuide__col--50">
-         <grid-option :grid-options="getComponent.biotope.allowedInGrid" />
+         <grid-option :grid-options="component.allowedInGrid" />
       </div>
     </div>
     <h2 class="styleGuide__variantsHeadline">{{ $t('details_variants') }}</h2>
     <div class="styleGuide__variants">
-      <Variant v-for="variant in getComponent.biotope.componentVariants" :variant="variant" :key="variant" />
+      <Variant v-for="variant in component.componentVariants" :variant="variant" :key="variant" />
     </div>
   </div>
 </template>
@@ -36,15 +36,20 @@ export default {
   },
   watch: {
     markupLoaded: function(value) {
-      if(this.getComponent.biotope.componentVariants.length === value) {
+      if(this.component && this.component.componentVariants.length === value) {
          const event = document.createEvent('Event');
         event.initEvent('styleGuide-markupLoaded', true, true);
         window.dispatchEvent(event);
       }
     }
   },
+
   computed: {
-    getComponent() {
+    component() {
+      const componentPackage = this.$store.getters.getComponentByName(this.$route.params.name);
+      if(!componentPackage) {
+        this.$store.dispatch('loadComponentDetails', this.$route.params.name);
+      }
       return this.$store.getters.getComponentByName(this.$route.params.name);
     }
   },

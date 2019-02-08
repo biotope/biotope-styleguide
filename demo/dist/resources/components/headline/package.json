@@ -1,4 +1,7 @@
 {
+    "name": "headline",
+    "description": "",
+    "keywords": ["h1"],
     "componentVariants": [{
         "name": "Headline Basic",
         "outputFileName": "headline.basic.html",

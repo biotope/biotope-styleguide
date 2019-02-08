@@ -11,6 +11,7 @@ export default (config) => new Vuex.Store({
   state: {
      componentList: [],
      selectedGrid: 12,
+     componentDetails: {}
   },
 
   getters: {
@@ -18,7 +19,7 @@ export default (config) => new Vuex.Store({
       return state.componentList
     },
     getComponentByName: (state) => (name) => {
-      return state.componentList.find(obj => obj.name === name);
+      return state.componentDetails[name];
     },
     getSelectedGrid: (state) => {
       return state.selectedGrid;
@@ -30,6 +31,12 @@ export default (config) => new Vuex.Store({
     },
     setSelectedGrid (state, grid) {
       state.selectedGrid = grid;
+    },
+    setComponentDetails (state, {detail, componentName}) {
+      state.componentDetails = {
+        ...state.componentDetails,
+        [componentName]: detail
+      }
     }
   },
   actions: {
@@ -41,8 +48,17 @@ export default (config) => new Vuex.Store({
         .get(`${config.root}componentOverview.json`)
         .then(r => r.data)
         .then(list => {
-        commit('setComponentList', list)
+        commit('setComponentList', list);
+      })
+    },
+    loadComponentDetails ({ commit }, componentName) {
+      axios
+        .get(`${config.root}${componentName}/package.json`)
+        .then(r => r.data)
+        .then(detail => {
+        commit('setComponentDetails', {detail, componentName});
       })
     }
+    
   }
 })

@@ -48,7 +48,7 @@ export default {
   },
   computed: {
       filteredComponentList: function() {
-        const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
+        const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.keywords || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
 
         let currentObject = this.groupComponents(this.$store.getters.getComponentList);
 

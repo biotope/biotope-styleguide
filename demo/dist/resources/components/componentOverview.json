@@ -2,7 +2,7 @@
     {
         "name": "headline",
         "category": "content",
-        "tags": ["h1"]
+        "keywords": ["h1"]
         
     }
 ]
