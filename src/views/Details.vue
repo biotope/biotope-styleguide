@@ -12,12 +12,12 @@
         <p class="styleGuide__description" v-html="component.description"></p>
       </div>
       <div class="styleGuide__col styleGuide__col--50">
-         <grid-option :grid-options="component.allowedInGrid" />
+         <grid-option :grid-options="component.biotope.allowedInGrid" />
       </div>
     </div>
     <h2 class="styleGuide__variantsHeadline">{{ $t('details_variants') }}</h2>
     <div class="styleGuide__variants">
-      <Variant v-for="variant in component.componentVariants" :variant="variant" :key="variant" />
+      <Variant v-for="variant in component.biotope.componentVariants" :variant="variant" :key="variant" />
     </div>
   </div>
 </template>
