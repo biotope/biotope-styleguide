@@ -7,7 +7,7 @@ import VueAxios from 'vue-axios'
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
-export default new Vuex.Store({
+export default (config) => new Vuex.Store({
   state: {
      componentList: [],
      selectedGrid: 12,
@@ -38,7 +38,7 @@ export default new Vuex.Store({
     },
     loadComponentList ({ commit }) {
       axios
-        .get('componentList.json')
+        .get(`${config.root}componentList.json`)
         .then(r => r.data)
         .then(list => {
         commit('setComponentList', list)
