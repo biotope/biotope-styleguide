@@ -5,8 +5,7 @@ import AsyncComputed from 'vue-async-computed'
 import IFrameResize from 'iframe-resizer/js/iframeResizer'
 import App from './App.vue'
 import router from './router'
-import store from './store'
-import vuexI18n from 'vuex-i18n';
+import VueI18n from 'vue-i18n'
 import 'prismjs'
 import 'prismjs/themes/prism-okaidia.css'
 
@@ -22,11 +21,10 @@ Vue.directive('resize', {
   }
 });
 Vue.use(AsyncComputed);
-Vue.use(Vuex);
 Vue.use(VueScrollTo, {
   offset: parseInt(document.querySelector(divSelector).dataset.scrollOffset) || 0
 });
-Vue.use(vuexI18n.plugin, store);
+Vue.use(VueI18n);
 
 
 // translations can be kept in separate files for each language
@@ -34,16 +32,22 @@ Vue.use(vuexI18n.plugin, store);
 
 
 // add translations directly to the application
-Vue.i18n.add('en', translationsEn);
-Vue.i18n.add('de', translationsDe);
 
-// set the start locale to use
+const messages = {
+  en: translationsEn,
+  de: translationsDe
+}
 const usedLanguage = document.querySelector(divSelector).dataset.lang || 'en';
-Vue.i18n.set(usedLanguage);
+
+const i18n = new VueI18n({
+  locale: 'de',
+  fallbackLocale: usedLanguage,
+  messages
+})
 
 
 new Vue({
-  store,
+  i18n,
   router,
   render: h => h(App)
 }).$mount(divSelector)

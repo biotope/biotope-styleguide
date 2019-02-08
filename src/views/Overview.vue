@@ -49,25 +49,19 @@ export default {
       listOfSort: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
       searchString: '',
       componentList: {
-          'A': [
-              {
-                  name: 'accordion',
-                  tags: ['accordeon'],
-                  category: 'Content'
-              }
-          ]
       }
     }
   },
 
   asyncComputed: {
       filteredComponentList: {
-
         get: async function() {
             const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
-
-            const componentList = await this.requestComponents();
-            let currentObject = this.groupComponents(componentList);
+            if(Object.keys(this.componentList).length === 0) {
+                const componentList = await this.requestComponents();
+                this.componentList = componentList;
+            }
+            let currentObject = this.groupComponents(this.componentList);
 
             let newObject = {};
             let activeListOfSort = [];
@@ -106,12 +100,11 @@ export default {
             const json = await response.json();
             return json;
         } catch(e) {
-                console.log(e);
-                return [{
-                  name: 'accordion',
-                  tags: ['accordeon'],
-                  category: 'Content'
-              }];
+            return [{
+                name: 'accordion',
+                tags: ['accordeon'],
+                category: 'Content'
+            }];
         }
       },
       setactiveListOfSort: function(newActiveListOfSort) {
