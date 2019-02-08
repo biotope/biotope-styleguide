@@ -7,7 +7,8 @@
   "main": "dist/index.js",
   "scripts": {
     "merge": "node demo/runMerge.js",
-    "start": "npm run merge && vue-cli-service serve",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
+    "start:client": "vue-cli-service build --watch",
     "start:server": "nodemon",
     "build:server": "tsc src/server/*.ts --outDir dist/server && cpy src/server/index.html dist/server/",
     "build": "vue-cli-service build",
@@ -38,6 +39,7 @@
     "@vue/cli-plugin-eslint": "^3.2.0",
     "@vue/cli-service": "^3.2.0",
     "babel-eslint": "^10.0.1",
+    "concurrently": "^4.1.0",
     "cpy-cli": "^2.0.0",
     "docsify": "^4.8.6",
     "eslint": "^5.8.0",
