@@ -12,7 +12,8 @@ import 'prismjs/themes/prism-okaidia.css'
 import translationsEn from './languages/en.json'
 import translationsDe from './languages/de.json'
 
-
+window.biotope = window.biotope || {};
+window.biotope.styleGuide = window.biotope.styleGuide || {};
 window.biotope.styleGuide.init = (config) => {
   Vue.config.productionTip = false;
   Vue.directive('resize', {
@@ -24,6 +25,7 @@ window.biotope.styleGuide.init = (config) => {
   Vue.use(VueScrollTo, {
     offset: config.contentOffset.top || 0
   });
+  const store = createStore(config);
   Vue.use(vuexI18n.plugin, store);
   
   
@@ -41,7 +43,7 @@ window.biotope.styleGuide.init = (config) => {
   
   
   new Vue({
-    store: createStore(config),
+    store,
     router,
     render: h => h(App)
   }).$mount(config.entryPoint || '#styleGuide')

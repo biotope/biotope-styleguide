@@ -48,7 +48,7 @@ export default {
   },
   computed: {
       filteredComponentList: function() {
-        const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.biotope.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
+        const matches = (searchString, packageJsonItem) => packageJsonItem.name.toLowerCase().match(searchString.toLowerCase()) || (packageJsonItem.tags || []).some(tag => tag.toLowerCase().match(searchString.toLowerCase()));
 
         let currentObject = this.groupComponents(this.$store.getters.getComponentList);
 
@@ -57,10 +57,10 @@ export default {
         let categories = this.categories;
         for(const sortArray in currentObject) {
             currentObject[sortArray].forEach((item) => {
-                if(categories.indexOf(item.biotope.category) === -1) {
-                    categories.push(item.biotope.category);
+                if(categories.indexOf(item.category) === -1) {
+                    categories.push(item.category);
                 }
-                if(this.activeCategory === '' || this.activeCategory === item.biotope.category) {
+                if(this.activeCategory === '' || this.activeCategory === item.category) {
                     if(matches(this.searchString, item)) {
                         if (!newObject[sortArray]) {
             

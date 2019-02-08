@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "merge": "node demo/runMerge.js",
-    "start": "npm run merge && vue-cli-service serve",
+    "start": "http-server demo/dist/",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "docs": "docsify serve docs"
@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "handlebars": "^4.0.12",
+    "http-server": "^0.11.1",
     "iframe-resizer": "^3.6.3",
     "prismjs": "^1.15.0",
     "vue": "^2.5.17",
