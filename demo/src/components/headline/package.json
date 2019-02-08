@@ -1,0 +1,17 @@
+{
+    "componentVariants": [{
+        "name": "Headline Basic",
+        "outputFileName": "headline.basic.html",
+        "description": "",
+        "data": {
+            "centered": false
+        }
+    },{
+        "name": "Headline Centered",
+        "outputFileName": "headline.centered.html",
+        "description": "",
+        "data": {
+            "centered": true
+        }
+    }]
+}
