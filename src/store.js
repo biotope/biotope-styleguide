@@ -9,12 +9,15 @@ Vue.use(VueAxios, axios)
 
 export default (config) => new Vuex.Store({
   state: {
-     componentList: [],
-     selectedGrid: 12,
-     componentDetails: {}
+    componentList: [],
+    selectedGrid: 12,
+    componentDetails: {}
   },
 
   getters: {
+    getUrlRoot: () => {
+      return config.root;
+    },
     getComponentList: (state) => {
       return state.componentList
     },
@@ -26,13 +29,13 @@ export default (config) => new Vuex.Store({
     }
   },
   mutations: {
-    setComponentList (state, list) {
+    setComponentList(state, list) {
       state.componentList = list;
     },
-    setSelectedGrid (state, grid) {
+    setSelectedGrid(state, grid) {
       state.selectedGrid = grid;
     },
-    setComponentDetails (state, {detail, componentName}) {
+    setComponentDetails(state, { detail, componentName }) {
       state.componentDetails = {
         ...state.componentDetails,
         [componentName]: detail
@@ -40,25 +43,24 @@ export default (config) => new Vuex.Store({
     }
   },
   actions: {
-    loadSelectedGrid ({ commit }, grid) {
+    loadSelectedGrid({ commit }, grid) {
       commit('setSelectedGrid', grid);
     },
-    loadComponentList ({ commit }) {
+    loadComponentList({ commit }) {
       axios
         .get(`${config.root}componentOverview.json`)
         .then(r => r.data)
         .then(list => {
-        commit('setComponentList', list);
-      })
+          commit('setComponentList', list);
+        })
     },
-    loadComponentDetails ({ commit }, componentName) {
+    loadComponentDetails({ commit }, componentName) {
       axios
         .get(`${config.root}${componentName}/package.json`)
         .then(r => r.data)
         .then(detail => {
-        commit('setComponentDetails', {detail, componentName});
-      })
+          commit('setComponentDetails', { detail, componentName });
+        })
     }
-    
   }
 })

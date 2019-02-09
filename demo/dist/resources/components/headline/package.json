@@ -1,26 +1,36 @@
 {
     "name": "headline",
     "description": "",
-    "keywords": ["h1"],
+    "keywords": [
+        "h1"
+    ],
     "biotope": {
-        "componentVariants": [{
-            "name": "Headline Basic",
-            "outputFileName": "headline.basic.html",
-            "description": "",
-            "data": {
-                "centered": false
+        "componentVariants": [
+            {
+                "name": "Headline Basic",
+                "outputFileName": "headline.basic.html",
+                "description": "",
+                "data": {
+                    "centered": false
+                }
+            },
+            {
+                "name": "Headline Centered",
+                "outputFileName": "headline.centered.html",
+                "description": "",
+                "data": {
+                    "centered": true
+                }
             }
-        },{
-            "name": "Headline Centered",
-            "outputFileName": "headline.centered.html",
-            "description": "",
-            "data": {
-                "centered": true
-            }
-        }],
+        ],
         "grid": {
             "base": 12,
-            "allowedColumns": [12,6,4]
+            "allowedColumns": [
+                12,
+                6,
+                4,
+                0
+            ]
         }
     }
 }

@@ -40,12 +40,15 @@ export default {
         }
     },
     created: function () {
-        const allowedInGridArray = this.$parent.getComponent.biotope.allowedInGrid;
-        if(allowedInGridArray.length) {
-           this.$store.dispatch('loadSelectedGrid',allowedInGridArray[0]);
-        } else {
-            this.showGrid = false;
+        if(this.$parent.getComponent) {
+            const allowedInGridArray = this.$parent.getComponent.biotope.allowedInGrid;
+            if(allowedInGridArray.length) {
+                this.$store.dispatch('loadSelectedGrid',allowedInGridArray[0]);
+            } else {
+                this.showGrid = false;
+            }
         }
+        
     },
     methods: {
         setGrid: function(grid) {
@@ -55,7 +58,7 @@ export default {
             }
         },
         canBeUsedinGrid: function(grid) {
-            return this.gridOptions.includes(grid);
+            return this.gridOptions ? this.gridOptions.includes(grid): false;
         }
     }
 }

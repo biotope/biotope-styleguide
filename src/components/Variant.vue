@@ -1,15 +1,15 @@
 <template>
     <div class="styleGuide__variant">
-        <div v-if="isLoading">
-        Loading Component...
+        <div v-if="!markup">
+          Loading Component...
         </div>
-        <div v-if="!isLoading" class="styleGuide__variant">
+        <div v-if="markup" class="styleGuide__variant">
             <h3 class="styleGuide__variantHeadline">{{variant.name}}</h3>
             <p class="styleGuide__variantDescription" v-html="variant.description"></p>
               <div class="styleGuide__markup">
                 <div class="row">
                   <div :class="getGrid">
-                    <div v-html="componentMarkup" />
+                    <div v-html="markup" />
                   </div>
                 </div>
               </div>
@@ -19,7 +19,7 @@
               </div>
               <transition name="accordion-fade">
                  <div v-if="show" class="styleGuide__code">
-                    <prism language="html">{{ componentMarkup }}</prism>
+                    <prism language="html">{{ markup }}</prism>
                  </div>
               </transition>
             </div>
@@ -31,34 +31,24 @@ import Prism from 'vue-prism-component'
 import axios from 'axios'
 export default {
   name: 'Variant',
-  props: ['variant'],
+  props: ['variant', 'component'],
   data() {
     return {
-      isLoading: true,
       item: this.variant,
       componentMarkup: '',
       show: false
     }
-  },
-  created: function() {
-      this.getMarkupOfComponent(this.variant.url);
   },
   computed: {
     getGrid() {
       return 'md-' + this.$store.getters.getSelectedGrid;
     }
   },
-  methods: {
-     getMarkupOfComponent: function(url) {
-      axios
-      .get(url)
-      .then(response => {
-        this.isLoading = false;
-        this.componentMarkup = response.data;
-        this.$nextTick(() => {
-          this.$parent.markupLoaded = this.$parent.markupLoaded+1;
-        })
-      })
+  asyncComputed: {
+    markup() {
+      return axios
+        .get(`${this.$store.getters.getUrlRoot}${this.component.name}/styleGuide/${this.variant.outputFileName}`)
+        .then(response => response.data);
     }
   },
   components: {
