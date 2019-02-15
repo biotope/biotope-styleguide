@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Overview from './views/Overview.vue'
-import Details from './views/Details.vue'
+import Overview from './components/Overview.vue'
+import Details from './components/Details.vue'
 
 Vue.use(Router)
 
@@ -19,7 +19,7 @@ export default new Router({
       component: Details
     }
   ],
-  scrollBehavior () {
+  scrollBehavior() {
     return { x: 0, y: 0 }
   }
 })

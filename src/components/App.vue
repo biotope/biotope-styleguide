@@ -1,5 +1,5 @@
 <template>
-   <div class="styleGuide">
+   <div class="style-guide">
       <span v-if="!isReady">Loading...</span>
       <router-view  v-if="isReady" />
    </div>
@@ -7,12 +7,12 @@
 
 <script>
 export default {
-  computed: {
-     isReady: function() {
+   computed: {
+      isReady: function() {
         return this.$store.getters.getComponentList.length > 0
-     }
-  },
-  mounted () {
+      }
+   },
+   mounted () {
      this.$store.dispatch('loadComponentList');
    }
 }

@@ -27,6 +27,8 @@
     </div>
 </template>
 <script>
+import 'prismjs';
+import 'prismjs/themes/prism-okaidia.css';
 import Prism from 'vue-prism-component'
 import axios from 'axios'
 export default {
@@ -112,20 +114,17 @@ $styleGuilde-color-primary: #337ab7;
 
   .accordion-fade-enter-active,
   .accordion-fade-leave-active {
-      transition: all .5s;
+      transition: all .2s;
   }
   .accordion-fade-enter-active {
-      max-height: 10000px;
-      opacity: 1;
+      max-height: 500px;
   }
   .accordion-fade-enter,
   .accordion-fade-leave-active {
       max-height: 0;
-      opacity: 0;
   }
   .accordion-fade-leave {
-      max-height: 10000px;
-      opacity: 1;
+      max-height: 500px;
   } 
 }
 </style>

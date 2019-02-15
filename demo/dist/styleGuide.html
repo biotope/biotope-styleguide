@@ -1,28 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-</head>
-<body>
-	<link rel="stylesheet" href="/styleGuide-resources/style-guide.css">
-	<link rel="stylesheet" href="/styleGuide-resources/style-guide-vendors.css">
-	<div id="styleGuide"></div>
-	<script src="/styleGuide-resources/style-guide.js"></script>
-	<script src="/styleGuide-resources/style-guide-vendors.js"></script>
-	<script>
-		window.biotope.styleGuide.init({
-			root: 'resources/components/',
-			contentOffset: {top: 0, bottom: 0},
-			language: 'de',
-			entryPoint: '#styleGuide',
-			gridGenerateCol: function() {
-				// return colom markup
-			}
-		});
-	</script>
-</body>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+	</head>
+
+	<body>
+		<div>
+			<div id="style-guide"></div>
+		</div>
+
+		<link rel="stylesheet" href="/styleGuide-resources/style-guide.css">
+		<link rel="stylesheet" href="/styleGuide-resources/style-guide-vendors.css">
+		<script src="/styleGuide-resources/style-guide.js"></script>
+		<script src="/styleGuide-resources/style-guide-vendors.js"></script>
+		<script>
+			window.biotope.styleGuide.init({
+				root: 'resources/components/',
+				contentOffset: { top: 0, bottom: 0 },
+				locale: 'de',
+				entryPoint: '#style-guide',
+				gridGenerateCol: function () {
+					// return colom markup
+				}
+			});
+		</script>
+	</body>
+
 </html>
