@@ -6,13 +6,7 @@
         <div v-if="markup" class="styleGuide__variant">
             <h3 class="styleGuide__variantHeadline">{{variant.name}}</h3>
             <p class="styleGuide__variantDescription" v-html="variant.description"></p>
-              <div class="styleGuide__markup">
-                <div class="row">
-                  <div :class="getGrid">
-                    <div v-html="markup" />
-                  </div>
-                </div>
-              </div>
+              <div class="styleGuide__markup" v-html="getGridMarkup(getGrid, markup)" />
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}">
               <div class="styleGuide__toolbar">
                 <a href="javascript:" class="styleGuide__showCode" @click="show = !show">{{ $t('details_code_buttonText') }}</a>
@@ -41,9 +35,14 @@ export default {
       show: false
     }
   },
+    methods: {
+    getGridMarkup(column, content) {
+      return this.$store.getters.getGridGenerateCol(column, content);
+    }
+  },
   computed: {
     getGrid() {
-      return 'md-' + this.$store.getters.getSelectedGrid;
+      return this.$store.getters.getSelectedGrid;
     }
   },
   asyncComputed: {

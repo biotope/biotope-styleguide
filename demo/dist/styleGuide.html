@@ -23,8 +23,8 @@
 				contentOffset: { top: 0, bottom: 0 },
 				locale: 'de',
 				entryPoint: '#style-guide',
-				gridGenerateCol: function () {
-					// return colom markup
+				gridGenerateCol: function (column, content) {
+					return `<div class="row"><div class="md-${column}">${content}</div></div>`;
 				}
 			});
 		</script>
