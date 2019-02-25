@@ -4,6 +4,7 @@ import IFrameResize from 'iframe-resizer/js/iframeResizer';
 import App from './components/App.vue';
 import router from './router';
 import setupStore from './setupStore';
+import VueClipboard from 'vue-clipboard2'
 import AsyncComputed from 'vue-async-computed';
 
 window.biotope = window.biotope || {};
@@ -19,7 +20,8 @@ window.biotope.styleGuide.init = (config) => {
   });
 
   Vue.use(AsyncComputed);
-
+  Vue.use(VueClipboard);
+  
   new Vue({
     store: setupStore(Vue, config),
     router,

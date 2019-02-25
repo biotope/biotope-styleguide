@@ -10,6 +10,11 @@
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}">
               <div class="styleGuide__toolbar">
                 <a href="javascript:" class="styleGuide__showCode" @click="show = !show">{{ $t('details_code_buttonText') }}</a>
+                 <a href="javascript:"  class="styleGuide__copyCode"
+                  v-clipboard:copy="markup"
+                  v-clipboard:success="onCopy"
+                  v-clipboard:error="onError">{{ currentCopyText }}</a>
+              </div>
               </div>
               <transition name="accordion-fade">
                  <div v-if="show" class="styleGuide__code">
@@ -32,12 +37,25 @@ export default {
     return {
       item: this.variant,
       componentMarkup: '',
-      show: false
+      show: false,
+      currentCopyText: this.$t('details_code_copyCode')
     }
   },
-    methods: {
+  methods: {
     getGridMarkup(column, content) {
-      return this.$store.getters.getGridGenerateCol(column, content);
+      return this.$store.getters['getGridGenerateCol'](column, content);
+    },
+    onCopy: function (e) {
+      this.currentCopyText = this.$t('details_code_copyCode_success');
+      setTimeout(() => {
+        this.currentCopyText = this.$t('details_code_copyCode');
+      }, 5000);
+    },
+    onError: function (e) {
+      this.currentCopyText = this.$t('details_code_copyCode_error');
+      setTimeout(() => {
+        this.currentCopyText = this.$t('details_code_copyCode');
+      }, 5000);
     }
   },
   computed: {
@@ -77,7 +95,7 @@ $styleGuilde-color-primary: #337ab7;
 
   &__showCode {
     position: relative;
-    display: block;
+    display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     padding: 10px 15px 10px 10px;

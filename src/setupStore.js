@@ -13,18 +13,19 @@ export default (vue, config) => {
     state: {
       componentList: [],
       selectedGrid: 12,
-      componentDetails: {}
+      componentDetails: {},
     },
 
     getters: {
       getUrlRoot: () => {
         return config.root;
       },
-      getGridGenerateCol: (column, content) => {
-        return config.gridGenerateCol(column, content);
+      getGridGenerateCol: (state) => {
+     
+        return config.gridGenerateCol;
       },
       getComponentList: (state) => {
-        return state.componentList
+        return state.componentList;
       },
       getComponentByName: (state) => (name) => {
         return state.componentDetails[name];

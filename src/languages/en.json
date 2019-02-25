@@ -6,5 +6,8 @@
     "details_tags": "Tags",
     "details_layoutOption_headline": "Layout Option",
     "details_code_buttonText": "HTML",
+    "details_code_copyCode": "Copy Code",
+    "details_code_copyCode_success": "Code copied!",
+    "details_code_copyCode_error": "Error while copying!",
     "details_variants": "Variants"
 }
