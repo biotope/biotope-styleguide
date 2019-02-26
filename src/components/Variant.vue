@@ -21,8 +21,7 @@
                     <prism language="html">{{ markup }}</prism>
                  </div>
               </transition>
-            </div>
-        </div>
+          </div>
     </div>
 </template>
 <script>
@@ -45,13 +44,13 @@ export default {
     getGridMarkup(column, content) {
       return this.$store.getters['getGridGenerateCol'](column, content);
     },
-    onCopy: function (e) {
+    onCopy: function () {
       this.currentCopyText = this.$t('details_code_copyCode_success');
       setTimeout(() => {
         this.currentCopyText = this.$t('details_code_copyCode');
       }, 5000);
     },
-    onError: function (e) {
+    onError: function () {
       this.currentCopyText = this.$t('details_code_copyCode_error');
       setTimeout(() => {
         this.currentCopyText = this.$t('details_code_copyCode');
