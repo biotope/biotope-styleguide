@@ -20,8 +20,7 @@ export default (vue, config) => {
       getUrlRoot: () => {
         return config.root;
       },
-      getGridGenerateCol: (state) => {
-     
+      getGridGenerateCol: () => {
         return config.gridGenerateCol;
       },
       getComponentList: (state) => {
