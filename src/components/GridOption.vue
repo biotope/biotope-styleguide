@@ -1,6 +1,9 @@
 <template>
     <div class="gridOption" v-if="showGrid">
-        <h3 class="gridOption__headline">{{ $t('details_layoutOption_headline') }}</h3>
+        <h3 class="gridOption__headline">
+            {{ $t('details_layoutOption_headline') }}
+            <span class="gridOption__tooltip" :data-tooltip="$t('details_layoutOption_description')"></span>
+        </h3>
         <div class="gridOption__grid">
             <div class="gridOption__row gridOption__row--12" v-bind:class="{'is-active': canBeUsedinGrid(12), 'is-selected': isSelected === 12}">
                 <div @click="setGrid(12)" class="gridOption__col" v-for="i in 1" :key="i" title="12 in 12" />

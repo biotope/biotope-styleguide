@@ -10,7 +10,7 @@
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}">
               <div class="styleGuide__toolbar">
                 <a href="javascript:" class="styleGuide__showCode" @click="show = !show">{{ $t('details_code_buttonText') }}</a>
-                 <a href="javascript:"  class="styleGuide__copyCode"
+                 <a href="javascript:"  class="styleGuide__copyCode" v-if="show"
                   v-clipboard:copy="markup"
                   v-clipboard:success="onCopy"
                   v-clipboard:error="onError">{{ currentCopyText }}</a>

@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    outputDir: path.resolve(__dirname, 'demo/dist/styleGuide-resources'),
+    outputDir: process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'dist') : path.resolve(__dirname, 'demo/dist/styleGuide-resources'),
     css: {
         extract: {
           filename: 'style-guide.css',

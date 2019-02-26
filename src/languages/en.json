@@ -5,6 +5,7 @@
     "details_backToOverview": "Back to Overview",
     "details_tags": "Tags",
     "details_layoutOption_headline": "Layout Option",
+    "details_layoutOption_description": "The layout options visualize the representation of the component in the possible column widths (Grid). The current display is marked in green, other possible options are displayed in blue and options not possible in gray.",
     "details_code_buttonText": "HTML",
     "details_code_copyCode": "Copy Code",
     "details_code_copyCode_success": "Code copied!",
