@@ -5,7 +5,6 @@
   "author": "Biotope",
   "license": "MIT",
   "scripts": {
-    "prepare": "npm run build -- --productiont",
     "start": "http-server demo/dist/",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
