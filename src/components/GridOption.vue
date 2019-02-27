@@ -2,7 +2,7 @@
     <div class="gridOption" v-if="showGrid">
         <h3 class="gridOption__headline">
             {{ $t('details_layoutOption_headline') }}
-            <span class="gridOption__tooltip" :data-tooltip="$t('details_layoutOption_description')"></span>
+            <span class="tooltip gridOption__tooltip" :data-tooltip="$t('details_layoutOption_description')"></span>
         </h3>
         <div class="gridOption__grid">
             <div class="gridOption__row gridOption__row--12" v-bind:class="{'is-active': canBeUsedinGrid(12), 'is-selected': isSelected === 12}">
