@@ -66,7 +66,12 @@ export default {
     markup() {
       return axios
         .get(`${this.$store.getters.getUrlRoot}${this.component.name}/styleGuide/${this.variant.outputFileName}`)
-        .then(response => response.data);
+        .then(response => {
+          this.$nextTick(() => {
+            this.$parent.markupLoaded = this.$parent.markupLoaded+1;
+          });
+          response.data;
+        });
     }
   },
   components: {
