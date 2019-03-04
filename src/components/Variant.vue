@@ -70,7 +70,7 @@ export default {
           this.$nextTick(() => {
             this.$parent.markupLoaded = this.$parent.markupLoaded+1;
           });
-          response.data;
+          return response.data;
         });
     }
   },
