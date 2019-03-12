@@ -3,7 +3,7 @@
     <router-link class="styleGuide__goBackLink" to="/">
       <span>{{ $t('details_backToOverview') }}</span>
     </router-link>
-     <h1 class="styleGuide__h1">{{ component.name }}</h1>
+     <h1 class="styleGuide__h1">{{ component.keywords[0] }}</h1>
      <p class="styleGuide__tags" v-if="component.keywords.length > 0">{{ $t('details_tags') }}:
        <span class="styleGuide__tag" v-for="tag in component.keywords" :key="tag">{{tag}}</span>
       </p>
