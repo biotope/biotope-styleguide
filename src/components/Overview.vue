@@ -25,7 +25,7 @@
         <h3 class="styleGuide__letter">{{index}}</h3>
         <ul class="styleGuide__items">
             <li v-for="component in componentList" class="styleGuide__item" :key="component.name">
-                <router-link :to="{ name: 'details', params: { name: component.name }}">{{ component.name }}</router-link>
+                <router-link :to="{ name: 'details', params: { name: component.name }}">{{ component.keywords[0] }}</router-link>
             </li>
         </ul>
     </div>
