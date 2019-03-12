@@ -98,7 +98,7 @@ export default {
       groupComponents: function(componentsList) {
         let groupedComponentList = {};
         componentsList.forEach(component => {
-            const firstLetter = component.name.charAt(0).toUpperCase();
+            const firstLetter = component.keywords[0].charAt(0).toUpperCase();
              if (!groupedComponentList[firstLetter]) {
                 groupedComponentList[firstLetter] = [];
             }
