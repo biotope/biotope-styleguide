@@ -74,8 +74,20 @@ export default {
         }
         this.setactiveListOfSort(activeListOfSort);
         this.setCategories(categories);
-        return newObject;
+        let sorted = Object.keys(newObject)
+            .sort()
+            .reduce((acc, key) => ({
+                ...acc, [key]: newObject[key].sort(function(a, b) {
+                    if (a.keywords[0] < b.keywords[0])
+                        return -1;
+                    if (a.keywords[0] > b.keywords[0])
+                        return 1;
+                    return 0;
+                })
+            }), {});
+        return sorted;
       },
+
   },
 
   methods: {
