@@ -42,7 +42,11 @@ export default {
   },
   methods: {
     getGridMarkup(column, content) {
-      return this.$store.getters['getGridGenerateCol'](column, content);
+      const markup = this.$store.getters['getGridGenerateCol'](column, content);
+       this.$nextTick(() => {
+           this.$parent.markupLoaded = this.$parent.markupLoaded+1;
+      });
+      return markup;
     },
     onCopy: function () {
       this.currentCopyText = this.$t('details_code_copyCode_success');
@@ -67,9 +71,6 @@ export default {
       return axios
         .get(`${this.$store.getters.getUrlRoot}${this.component.name}/styleGuide/${this.variant.outputFileName}`)
         .then(response => {
-          this.$nextTick(() => {
-            this.$parent.markupLoaded = this.$parent.markupLoaded+1;
-          });
           return response.data;
         });
     }

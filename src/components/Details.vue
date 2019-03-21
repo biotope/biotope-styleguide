@@ -36,8 +36,8 @@ export default {
   },
   watch: {
     markupLoaded: function(value) {
-      if(this.component && this.component.biotope.componentVariants.length === value) {
-         const event = document.createEvent('Event');
+      if(this.component && this.component.biotope.componentVariants.length <= value) {
+        const event = document.createEvent('Event');
         event.initEvent('styleGuide-markupLoaded', true, true);
         window.dispatchEvent(event);
       }
