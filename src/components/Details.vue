@@ -12,7 +12,7 @@
         <p class="styleGuide__description" v-html="component.description"></p>
       </div>
       <div class="styleGuide__col styleGuide__col--50">
-         <grid-option v-if="component.biotope.grid.length > 0" :grid-options="component.biotope.grid.allowedColumns" />
+         <grid-option v-if="Object.keys(component.biotope.grid).length > 0" :grid-options="component.biotope.grid.allowedColumns" />
       </div>
     </div>
     <h2 class="styleGuide__variantsHeadline">{{ $t('details_variants') }}</h2>
