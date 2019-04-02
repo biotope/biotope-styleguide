@@ -3,5 +3,10 @@
         "name": "headline",
         "category": "content",
         "keywords": ["h1"]
+    },
+    {
+        "name": "newwindow",
+        "category": "content",
+        "keywords": ["newwindow"]
     }
 ]

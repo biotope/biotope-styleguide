@@ -5,8 +5,10 @@
         </div>
         <div v-if="markup" class="styleGuide__variant">
             <h3 class="styleGuide__variantHeadline">{{variant.name}}</h3>
-            <p class="styleGuide__variantDescription" v-html="variant.description"></p>
-            <div class="styleGuide__markup" v-html="getGridMarkup(getGrid, markup)" />
+            <p class="styleGuide__variantDescription" v-if="variant.description" v-html="variant.description" />
+            <div class="styleGuide__markup" v-if="!variant.externalLink" v-html="getGridMarkup(getGrid, markup)" />
+      
+            <div class="" v-if="variant.externalLink"><a target="_blank" :href="getExternalUrl()">External Link</a></div>
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}">
               <div class="styleGuide__toolbar">
                   <a href="javascript:" class="styleGuide__showCode" @click="show = !show">{{ $t('details_code_buttonText') }}</a>
@@ -14,7 +16,6 @@
                     v-clipboard:copy="markup"
                     v-clipboard:success="onCopy"
                     v-clipboard:error="onError">{{ currentCopyText }}</a>
-                   
               </div>
                <div v-show="show" class="styleGuide__code">
                   <prism language="html">{{ markup }}</prism>
@@ -40,6 +41,9 @@ export default {
     }
   },
   methods: {
+    getExternalUrl() {
+      return `${this.$store.getters.getUrlRoot}${this.component.name}/styleGuide/${this.variant.outputFileName}`;
+    },
     getGridMarkup(column, content) {
       const markup = this.$store.getters['getGridGenerateCol'](column, content);
        this.$nextTick(() => {
