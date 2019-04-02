@@ -9,7 +9,7 @@
         </li>
     </ul>
     <div class="styleGuide__searchWrapper">
-        <input class="styleGuide__search" type="search" v-model="searchString" :placeholder="$t('overview_search_placeholder')">
+        <input class="styleGuide__search" type="search" v-model="searchString" autofocus :placeholder="$t('overview_search_placeholder')">
     </div>
     <div class="styleGuide__sort">
         <span class="styleGuide__sortItem"  v-for="item in listOfSort.slice(0, 13)" :key="item">

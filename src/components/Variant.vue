@@ -8,9 +8,9 @@
             <p class="styleGuide__variantDescription" v-if="variant.description" v-html="variant.description" />
             <div class="styleGuide__markup" v-if="!variant.externalLink" v-html="getGridMarkup(getGrid, markup)" />
       
-            <div class="" v-if="variant.externalLink"><a target="_blank" :href="getExternalUrl()">External Link</a></div>
+            <div class="" v-if="variant.externalLink"><a :href="getExternalUrl()">zur Musterseite</a></div>
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}">
-              <div class="styleGuide__toolbar">
+              <div class="styleGuide__toolbar" v-if="variant.externalLink">
                   <a href="javascript:" class="styleGuide__showCode" @click="show = !show">{{ $t('details_code_buttonText') }}</a>
                   <a href="javascript:"  class="styleGuide__copyCode" v-if="show"
                     v-clipboard:copy="markup"
