@@ -6,6 +6,7 @@
 	"details_tags": "Tags",
     "details_layoutOption_headline": "Layout-Optionen",
     "details_layoutOption_description": "Die Layout-Optionen visualisieren die Darstellung der Komponente in den möglichen Spaltenbreiten (Grid). Die aktuelle Darstellung ist grün markiert, weitere mögliche Optionen werden blau und nicht mögliche Optionen grau dargestellt.",
+    "details_code_externalLink": "zur Musterseite",
     "details_code_buttonText": "HTML",
     "details_code_copyCode": "Code kopieren",
     "details_code_copyCode_success": "Code kopiert!",
