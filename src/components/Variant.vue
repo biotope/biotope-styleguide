@@ -5,7 +5,7 @@
         </div>
         <div v-if="markup" class="styleGuide__variant">
             <h3 class="styleGuide__variantHeadline">{{variant.name}}</h3>
-            <p class="styleGuide__variantDescription" v-if="variant.description" v-html="variant.description" />
+            <div class="styleGuide__variantDescription" v-if="variant.description" v-html="variant.description" />
             <div class="styleGuide__markup" v-if="!variant.externalLink" v-html="getGridMarkup(getGrid, markup)" />
       
             <div class="styleGuide__externalLink" v-if="variant.externalLink"><a :href="getExternalUrl()">{{$t('details_code_externalLink')}}</a></div>
