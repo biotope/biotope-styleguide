@@ -8,11 +8,11 @@
             <div class="styleGuide__variantDescription" v-if="variant.description" v-html="variant.description" />
             <div class="styleGuide__markup" v-if="!variant.externalLink" v-html="getGridMarkup(getGrid, markup)" />
       
-            <div class="styleGuide__externalLink" v-if="variant.externalLink"><a :href="getExternalUrl()">{{$t('details_code_externalLink')}}</a></div>
+            <div class="styleGuide__externalLink" v-if="variant.externalLink"><a :href="getExternalUrl()" target="_blank">{{$t('details_code_externalLink')}}</a></div>
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}" v-if="!variant.externalLink">
               <div class="styleGuide__toolbar">
                   <a href="javascript:" class="styleGuide__showCode" @click="show = !show">{{ $t('details_code_buttonText') }}</a>
-                  <a href="javascript:"  class="styleGuide__copyCode" v-if="show"
+                  <a href="javascript:"  class="styleGuide__copyCode" :class="currentCopyClass" v-if="show"
                     v-clipboard:copy="markup"
                     v-clipboard:success="onCopy"
                     v-clipboard:error="onError">{{ currentCopyText }}</a>
@@ -37,6 +37,7 @@ export default {
       item: this.variant,
       componentMarkup: '',
       show: false,
+      currentCopyClass: '',
       currentCopyText: this.$t('details_code_copyCode')
     }
   },
@@ -52,8 +53,10 @@ export default {
       return markup;
     },
     onCopy: function () {
+      this.currentCopyClass = 'is-active';
       this.currentCopyText = this.$t('details_code_copyCode_success');
       setTimeout(() => {
+         this.currentCopyClass = '';
         this.currentCopyText = this.$t('details_code_copyCode');
       }, 5000);
     },
@@ -63,6 +66,9 @@ export default {
         this.currentCopyText = this.$t('details_code_copyCode');
       }, 5000);
     }
+  },
+  created() {
+    this.$store.dispatch('loadSelectedGrid', 12);
   },
   computed: {
     getGrid() {
