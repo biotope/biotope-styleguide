@@ -3,7 +3,7 @@
         <div v-if="!markup">
           Loading Component...
         </div>
-        <div v-if="markup" class="styleGuide__variant">
+        <div v-if="markup">
             <h3 class="styleGuide__variantHeadline">{{variant.name}}</h3>
             <div class="styleGuide__variantDescription" v-if="variant.description" v-html="variant.description" />
             <div class="styleGuide__markup" v-if="!variant.externalLink" v-html="getGridMarkup(getGrid, markup)" />
