@@ -8,7 +8,7 @@
             <div class="styleGuide__variantDescription" v-if="variant.description" v-html="variant.description" />
             <div class="styleGuide__markup" v-if="!variant.externalLink" v-html="getGridMarkup(getGrid, markup)" />
       
-            <div class="styleGuide__externalLink" v-if="variant.externalLink"><a :href="getExternalUrl()" target="_blank">{{$t('details_code_externalLink')}}</a></div>
+            <div class="styleGuide__externalLink" v-if="variant.externalLink"><a :href="getExternalUrl()" target="_blank" rel="noopener">{{$t('details_code_externalLink')}}</a></div>
             <div class="styleGuide__codeSection" :class="{ 'is-active': show}" v-if="!variant.externalLink">
               <div class="styleGuide__toolbar">
                   <a href="javascript:" class="styleGuide__showCode" @click="show = !show">{{ $t('details_code_buttonText') }}</a>
