@@ -15,7 +15,7 @@
          <grid-option v-if="Object.keys(component.biotope.grid).length > 0" :grid-options="component.biotope.grid.allowedColumns" />
       </div>
     </div>
-    <h2 class="styleGuide__variantsHeadline">{{ $t('details_variants') }}</h2>
+    <h2 v-if="'componentVariants' in component.biotope && component.biotope.componentVariants.length > 0" class="styleGuide__variantsHeadline">{{ $t('details_variants') }}</h2>
     <div class="styleGuide__variants">
       <Variant v-for="variant in component.biotope.componentVariants" :variant="variant" :key="variant" :component="component" />
     </div>
