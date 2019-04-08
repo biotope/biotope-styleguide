@@ -18,7 +18,10 @@ export default (vue, config) => {
 
     getters: {
       getUrlRoot: () => {
-        return config.root;
+        return config.root || '';
+      },
+      getResourceUrl: () => {
+        return config.resourceUrl || '';
       },
       getGridGenerateCol: () => {
         return config.gridGenerateCol;

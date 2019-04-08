@@ -46,7 +46,8 @@ export default {
       return `${this.$store.getters.getUrlRoot}${this.component.name}/styleGuide/${this.variant.outputFileName}`;
     },
     getGridMarkup(column, content) {
-      const markup = this.$store.getters['getGridGenerateCol'](column, content);
+      let markup = this.$store.getters['getGridGenerateCol'](column, content);
+      markup = markup.replace('src="', 'src="'+ this.$store.getters.getResourceUrl);
        this.$nextTick(() => {
            this.$parent.markupLoaded = this.$parent.markupLoaded+1;
       });
@@ -80,6 +81,7 @@ export default {
       return axios
         .get(`${this.$store.getters.getUrlRoot}${this.component.name}/styleGuide/${this.variant.outputFileName}`)
         .then(response => {
+
           return response.data;
         });
     }
