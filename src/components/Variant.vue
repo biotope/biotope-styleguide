@@ -47,8 +47,6 @@ export default {
     },
     getGridMarkup(column, content) {
       let markup = this.$store.getters['getGridGenerateCol'](column, content);
-      markup = markup.replace(/src="/g, 'src="'+ this.$store.getters.getResourceUrl);
-      markup = markup.replace(/-url="/g, '-url="'+ this.$store.getters.getResourceUrl);
        this.$nextTick(() => {
            this.$parent.markupLoaded = this.$parent.markupLoaded+1;
       });
