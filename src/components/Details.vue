@@ -1,6 +1,6 @@
 <template>
    <div v-if="component" class="styleGuide__details">
-    <a :href="window.location.pathname" class="styleGuide__goBackLink">
+    <a :href="overviewLink" class="styleGuide__goBackLink">
       <span>{{ $t('details_backToOverview') }}</span>
     </a>
      <h1 class="styleGuide__h1">{{ component.keywords[0] }}</h1>
@@ -31,6 +31,7 @@ export default {
   name: 'Details',
   data() {
     return {
+      overviewLink: window.location.pathname,
       markupLoaded: 0
     }
   },
