@@ -47,7 +47,7 @@ export default {
     },
     getGridMarkup(column, content) {
       let markup = this.$store.getters['getGridGenerateCol'](column, content);
-       this.$nextTick(() => {
+      this.$nextTick(() => {
            this.$parent.markupLoaded = this.$parent.markupLoaded+1;
       });
       return markup;

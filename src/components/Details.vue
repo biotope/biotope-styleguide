@@ -1,8 +1,8 @@
 <template>
    <div v-if="component" class="styleGuide__details">
-    <router-link class="styleGuide__goBackLink" to="/">
+    <a :href="window.location.pathname" class="styleGuide__goBackLink">
       <span>{{ $t('details_backToOverview') }}</span>
-    </router-link>
+    </a>
      <h1 class="styleGuide__h1">{{ component.keywords[0] }}</h1>
      <p class="styleGuide__tags" v-if="component.keywords.length > 0">{{ $t('details_tags') }}:
        <span class="styleGuide__tag" v-for="tag in component.keywords" :key="tag">{{tag}}</span>
