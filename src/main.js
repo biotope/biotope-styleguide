@@ -10,6 +10,7 @@ import AsyncComputed from 'vue-async-computed';
 window.biotope = window.biotope || {};
 window.biotope.styleGuide = window.biotope.styleGuide || {};
 window.biotope.styleGuide.init = (config) => {
+
   Vue.directive('resize', {
     inserted: function (el) {
       IFrameResize({ log: false, autoResize: true }, el);
@@ -21,7 +22,8 @@ window.biotope.styleGuide.init = (config) => {
 
   Vue.use(AsyncComputed);
   Vue.use(VueClipboard);
-  
+
+  Vue.config.devtools = true;
   new Vue({
     store: setupStore(Vue, config),
     router,

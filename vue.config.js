@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-  outputDir: process.argv.indexOf('--targetFolder=dist') > 0 ? path.resolve(__dirname, 'dist') : path.resolve(__dirname, 'demo/dist/styleGuide-resources'),
+  outputDir: path.resolve(__dirname, 'dist'),
   css: {
     extract: {
       filename: 'style-guide.css',
