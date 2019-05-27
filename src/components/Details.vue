@@ -16,7 +16,7 @@
       </div>
     </div>
     <h2 v-if="'componentVariants' in component.biotope && component.biotope.componentVariants.length > 0" class="styleGuide__variantsHeadline">{{ $t('details_variants') }}</h2>
-    <div class="styleGuide__variants">
+    <div class="styleGuide__variants" v-if="'componentVariants' in component.biotope && component.biotope.componentVariants.length > 0">
       <Variant v-for="variant in component.biotope.componentVariants" :variant="variant" :key="variant" :component="component" />
     </div>
   </div>
