@@ -1,0 +1,20 @@
+{
+    "name": "headline",
+    "category": "",
+    "description": "",
+    "keywords": [
+        "h1"
+    ],
+    "biotope": {
+       
+        "grid": {
+            "base": 12,
+            "allowedColumns": [
+                12,
+                6,
+                4,
+                0
+            ]
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "newwindow",
+    "category": "",
+    "description": "",
+    "keywords": [
+        "newwindow"
+    ],
+    "biotope": {
+        "componentVariants": [
+            {
+                "name": "External Link",
+                "outputFileName": "newwindow.html",
+                "description": "",
+                "externalLink": true,
+                "data": {
+                    "centered": false
+                }
+            },
+            {
+                "name": "Internal Link",
+                "outputFileName": "newwindow.html",
+                "description": "",
+                "data": {
+                    "centered": true
+                }
+            }
+        ],
+        "grid": {
+        }
+    }
+}

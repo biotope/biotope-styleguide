@@ -1,0 +1,45 @@
+{
+  "name": "@biotope/styleguide",
+  "description": "styleguide for biotope",
+  "version": "1.0.0",
+  "author": "Biotope",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm-run-all --parallel start:*",
+    "start:vue": "vue-cli-service serve",
+    "start:demo": "http-server demo/dist/ -p 1234",
+    "build": "vue-cli-service build --targetFolder=dist",
+    "lint": "vue-cli-service lint",
+    "docs": "docsify serve docs"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "handlebars": "^4.0.12",
+    "http-server": "^0.11.1",
+    "iframe-resizer": "^3.6.3",
+    "prismjs": "^1.15.0",
+    "vue": "^2.5.17",
+    "vue-async-computed": "^3.5.2",
+    "vue-axios": "^2.1.4",
+    "vue-clipboard2": "0.3.0",
+    "vue-prism-component": "^1.1.1",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.1",
+    "vue-scrollto": "^2.13.0",
+    "vuex": "^3.0.1",
+    "vuex-i18n": "^1.11.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-plugin-eslint": "^3.2.0",
+    "@vue/cli-service": "^3.2.0",
+    "babel-eslint": "^10.0.1",
+    "docsify": "^4.8.6",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
+    "node-sass": "^4.9.0",
+    "npm-run-all": "^4.1.5",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
