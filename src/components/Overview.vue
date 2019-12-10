@@ -25,13 +25,7 @@
       </div>
     </div>
     <div class="styleGuide__sort">
-      <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(0, 13)" :key="item">
-        <button
-          :disabled="isSortItemDisabled(item)"
-          v-scroll-to="{ el: '#styleGide-' + item}"
-        >{{item}}</button>
-      </span>
-      <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(13, 26)" :key="item">
+      <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(0, 16)" :key="item">
         <button
           :disabled="isSortItemDisabled(item)"
           v-scroll-to="{ el: '#styleGide-' + item}"
@@ -39,8 +33,15 @@
       </span>
     </div>
     <div class="styleGuide__sort">
+      <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(16, 26)" :key="item">
+        <button
+          :disabled="isSortItemDisabled(item)"
+          v-scroll-to="{ el: '#styleGide-' + item}"
+        >{{item}}</button>
+      </span>
+    </div>
     <div
-      :id="'styleGide-' + index"
+      :id="'styleGuide-' + index"
       v-for="(componentList,index) in filteredComponentList"
       :key="index"
     >
