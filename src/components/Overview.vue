@@ -31,8 +31,6 @@
           v-scroll-to="{ el: '#styleGide-' + item}"
         >{{item}}</button>
       </span>
-    </div>
-    <div class="styleGuide__sort">
       <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(13, 26)" :key="item">
         <button
           :disabled="isSortItemDisabled(item)"
