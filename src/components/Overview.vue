@@ -43,11 +43,10 @@
       v-for="(componentList,index) in filteredComponentList"
       :key="index"
     >
-      <h3 class="styleGuide__letter">{{index}}</h3>
-      <a
-        href="#lexikon-top"
-        class="ui-icon-pfeilhoch go-top handle-anchors __web-inspector-hide-shortcut__"
-      >Nach oben</a>
+      <h3 class="styleGuide__letter">
+        {{index}}
+        <a href="#lexikon-top" class="ui-icon-pfeilhoch">Nach oben</a>
+      </h3>
 
       <ul class="styleGuide__items">
         <li v-for="component in componentList" class="styleGuide__item" :key="component.name">
