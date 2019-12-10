@@ -23,22 +23,22 @@
           :placeholder="$t('overview_search_placeholder')"
         />
       </div>
-      <div class="styleGuide__sort">
-        <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(0, 13)" :key="item">
-          <button
-            :disabled="isSortItemDisabled(item)"
-            v-scroll-to="{ el: '#styleGide-' + item}"
-          >{{item}}</button>
-        </span>
-      </div>
-      <div class="styleGuide__sort">
-        <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(13, 26)" :key="item">
-          <button
-            :disabled="isSortItemDisabled(item)"
-            v-scroll-to="{ el: '#styleGide-' + item}"
-          >{{item}}</button>
-        </span>
-      </div>
+    </div>
+    <div class="styleGuide__sort">
+      <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(0, 13)" :key="item">
+        <button
+          :disabled="isSortItemDisabled(item)"
+          v-scroll-to="{ el: '#styleGide-' + item}"
+        >{{item}}</button>
+      </span>
+    </div>
+    <div class="styleGuide__sort">
+      <span class="styleGuide__sortItem" v-for="item in listOfSort.slice(13, 26)" :key="item">
+        <button
+          :disabled="isSortItemDisabled(item)"
+          v-scroll-to="{ el: '#styleGide-' + item}"
+        >{{item}}</button>
+      </span>
     </div>
     <div
       :id="'styleGide-' + index"
