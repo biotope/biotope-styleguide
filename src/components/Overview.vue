@@ -38,6 +38,7 @@
         >{{item}}</button>
       </span>
     </div>
+    <div class="styleGuide__sort">
     <div
       :id="'styleGide-' + index"
       v-for="(componentList,index) in filteredComponentList"
