@@ -47,7 +47,6 @@
         {{index}}
         <a href="#" class="ui-icon-pfeilhoch" v-scroll-to="{ el: '#header'}">Nach oben</a>
       </h3>
-
       <ul class="styleGuide__items">
         <li v-for="component in componentList" class="styleGuide__item" :key="component.name">
           <router-link
