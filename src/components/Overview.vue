@@ -45,7 +45,7 @@
     >
       <h3 class="styleGuide__letter">
         {{index}}
-        <a href="#lexikon-top" class="ui-icon-pfeilhoch">Nach oben</a>
+        <a href="#library-top" class="ui-icon-pfeilhoch go-top handle-anchors">Nach oben</a>
       </h3>
 
       <ul class="styleGuide__items">
