@@ -28,13 +28,13 @@
       <li class="styleGuide__sortItem" v-for="item in listOfSort.slice(0, 16)" :key="item">
         <button
           :disabled="isSortItemDisabled(item)"
-          v-scroll-to="{ el: '#styleGide-' + item}"
+          v-scroll-to="{ el: '#styleGuide-' + item}"
         >{{item}}</button>
       </li>
       <li class="styleGuide__sortItem" v-for="item in listOfSort.slice(16, 26)" :key="item">
         <button
           :disabled="isSortItemDisabled(item)"
-          v-scroll-to="{ el: '#styleGide-' + item}"
+          v-scroll-to="{ el: '#styleGuide-' + item}"
         >{{item}}</button>
       </li>
     </ul>
