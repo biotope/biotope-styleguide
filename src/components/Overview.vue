@@ -45,11 +45,11 @@
     >
       <h3 class="styleGuide__letter">
         {{index}}
-        <button
+        <a
           href="#library-top"
           class="ui-icon-pfeilhoch"
           v-scroll-to="{ el: '#library-top'}"
-        >Nach oben</button>
+        >Nach oben</a>
       </h3>
 
       <ul class="styleGuide__items">
