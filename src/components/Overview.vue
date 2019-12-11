@@ -46,7 +46,7 @@
       <h3 class="styleGuide__letter">
         {{index}}
         <a
-          href="#library-top"
+          href="library-top"
           class="ui-icon-pfeilhoch"
           v-scroll-to="{ el: '#library-top'}"
         >Nach oben</a>
